@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Tempest</title>
+</head>
+
+<style>
+    #conteudoParaRevelar {
+        display: none;
+        margin-top: 10px;
+    }
+</style>
+
+<body style="background-color: #ffffff;">
+    <nav class="navbar navbar-expand-sm sticky-top" style="background-color: rgb(39, 22, 132);">
+        <div class="container">
+            <a href="" class="navbar-brand d-flex align-items-center text-white">
+                TEMPEST</a>
+            <button class="navbar-toggler" type="" data-bs-toggle="collapse" data-bs-target="#menuNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="menuNavbar">
+                <div class="navbar-nav nav-underline nav-fill">
+                    <a href="#quemSomos" class="nav-link navbar-brand text-white">Quem Somos Nós</a>
+                    <a href="#servicos" class="nav-link navbar-brand text-white">Como Trabalhamos</a>
+                    <a href="#equipe" class="nav-link navbar-brand text-white">Equipe</a>
+                    <a href="" class="nav-link navbar-brand text-white">Blabla 2</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container col-8" style="text-align: justify;">
+
+        <div class="container text-center mt-5 col-6">
+            <h1>Logo</h1>
+            <img src="logo.jpeg" class="img-fluid rounded" alt="Imagem Centralizada">
+        </div>
+        <div class="m-5"></div>
+
+
+        <!--Imagem Teste-->
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-6 offset-md-3 text-center">
+                    <img src="drop.jpeg" alt="Imagem" id="imagem" style="cursor: pointer; width: 200px; height: 200px;">
+                    <span id="conteudoParaRevelar">Conteúdo do Span</span>
+                </div>
+            </div>
+        </div>
+
+        <!--Script da Imagem Teste-->
+        <script>
+            document.getElementById('imagem').addEventListener('click', function () {
+                var conteudoParaRevelar = document.getElementById('conteudoParaRevelar');
+                conteudoParaRevelar.style.display = conteudoParaRevelar.style.display === 'none' ? 'inline' : 'none';
+            });
+        </script>
+
+        <div class="mt-5">
+            <h5 id="quemSomos">Quem Somos</h5>
+            <p class="lead">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus dicta in officiis error quis quidem quae
+                delectus
+                voluptatum, magnam placeat provident sequi, alias reprehenderit animi consequuntur voluptate id esse
+                ratione excepturi.
+                Ad quia libero maiores quibusdam ex molestias dolore, ipsa unde deserunt delectus et soluta. Facilis
+                quidem, beatae
+                rerum eos error nesciunt consectetur sapiente fugit, odit veritatis nam quisquam maiores debitis impedit
+                obcaecati
+                minima. Aliquid, molestias! At in nam cum corrupti facere quisquam a modi similique distinctio, eligendi
+                quaerat ex
+                reiciendis exercitationem. Sapiente quod excepturi, incidunt, placeat non animi nostrum deleniti minima
+                laboriosam
+                asperiores eaque ducimus error tenetur quisquam ipsam?
+            </p>
+            <div id="servicos">
+                <ul class="list-group mt-5">
+                    <h5>Serviços</h5>
+                    <li>Item A</li>
+                    <li>Item B</li>
+                    <li>Item C</li>
+                    <li>Item D</li>
+                </ul>
+            </div>
+        </div>
+        <div id="equipe">
+            <p class="lead mt-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore atque veniam magni
+                consequuntur provident corrupti,
+                reprehenderit quaerat, quia ratione dolor vel accusamus, ad dolores est. Ratione vel voluptates
+                consequuntur ipsam,
+                non similique quod qui repudiandae corporis porro eveniet, odit quibusdam, ut mollitia repellat id quia
+                natus
+                architecto! In cum, delectus voluptatum cupiditate soluta iusto eligendi nostrum consectetur ullam quia
+                fugiat
+                labore quisquam voluptates quam velit praesentium eos officiis minus, eum incidunt? Consequuntur iste
+                ipsam non
+                voluptatum suscipit, rerum corrupti aliquid in possimus. Quam inventore sint, dolor suscipit quis
+                placeat ea nobis
+                aliquam eum corrupti officiis. Delectus vel temporibus voluptatibus eligendi.</p>
+            <ul class="list-group mt-5">
+                <h5>Equipe</h5>
+                <li>Item A</li>
+                <li>Item B</li>
+                <li>Item C</li>
+            </ul>
+        </div>
+
+        <p class="lead mt-5">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus dicta in officiis error quis quidem quae
+            delectus
+            voluptatum, magnam placeat provident sequi, alias reprehenderit animi consequuntur voluptate id esse ratione
+            excepturi.
+            Ad quia libero maiores quibusdam ex molestias dolore, ipsa unde deserunt delectus et soluta. Facilis quidem,
+            beatae
+            rerum eos error nesciunt consectetur sapiente fugit, odit veritatis nam quisquam maiores debitis impedit
+            obcaecati
+            minima. Aliquid, molestias! At in nam cum corrupti facere quisquam a modi similique distinctio, eligendi
+            quaerat ex
+            reiciendis exercitationem. Sapiente quod excepturi, incidunt, placeat non animi nostrum deleniti minima
+            laboriosam
+            asperiores eaque ducimus error tenetur quisquam ipsam?
+        </p>
+        <p class="lead mt-5">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus dicta in officiis error quis quidem quae
+            delectus
+            voluptatum, magnam placeat provident sequi, alias reprehenderit animi consequuntur voluptate id esse ratione
+            excepturi.
+            Ad quia libero maiores quibusdam ex molestias dolore, ipsa unde deserunt delectus et soluta. Facilis quidem,
+            beatae
+            rerum eos error nesciunt consectetur sapiente fugit, odit veritatis nam quisquam maiores debitis impedit
+            obcaecati
+            minima. Aliquid, molestias! At in nam cum corrupti facere quisquam a modi similique distinctio, eligendi
+            quaerat ex
+            reiciendis exercitationem. Sapiente quod excepturi, incidunt, placeat non animi nostrum deleniti minima
+            laboriosam
+            asperiores eaque ducimus error tenetur quisquam ipsam?
+        </p>
+
+
+    </div>
+
+    <div class="container col-8" style="text-align: justify;">
+        <h5 class="text-center mt-5">MEMBROS TEMPEST</h5>
+    </div>
+
+    <div class="container text-center mt-5 col-3">
+        <h4 class="mt-1">Líder</h4>
+        <img src="logo.jpeg" class="img-fluid rounded" alt="Imagem Centralizada">
+    </div>
+
+    <div class="container text-center mt-5 col-3">
+        <h4 class="mt-1">Escravo 1</h4>
+        <img src="logo.jpeg" class="img-fluid rounded" alt="Imagem Centralizada">
+    </div>
+
+    <div class="container text-center mt-5 col-3">
+        <h4 class="mt-1">Escravo 2</h4>
+        <img src="logo.jpeg" class="img-fluid rounded" alt="Imagem Centralizada">
+    </div>
+
+    <div class="container text-center mt-5 col-3">
+        <h4 class="mt-1">Imagem Teste</h4>
+        <img src="drop.jpeg" id="imagemExemplo" class="img-fluid rounded" alt="Imagem" data-bs-toggle="modal"
+            data-bs-target="#infoModal">
+    </div>
+
+    <div class="container text-center mt-5 col-3">
+        <h4 class="mt-1">Imagem Teste 2</h4>
+        <img src="logo.jpeg" id="imagemExemplo" class="img-fluid rounded" alt="Imagem" data-bs-toggle="modal"
+            data-bs-target="#infoModal">
+    </div>
+
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nome de Fulano</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Conteúdo das informações a serem exibidas -->
+                    <img src="logo.jpeg" id="imagemExemplo" class="img-fluid rounded" alt="Imagem" data-bs-toggle="modal"
+            data-bs-target="#infoModal">
+                    <p>Descrição de fulano...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript (popper.js included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Smooth Scroll JavaScript -->
+    <script>
+        // Adiciona rolagem suave a todos os links com hash
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
+
+<footer class="text-black accordion-collapse text-start" style="background-color:  rgb(39, 22, 132);">
+    <div class="bg-transparent">
+
+    </div>
+    </nav>
+    <hr>
+    <div class="col-12 text-center">
+        <span class="d-flex justify-content-center" style="color: rgb(255, 255, 255);">&copy;2023 - Projeto Tempest</span>
+    </div>
+    <span class="ms-2">
+
+    </span>
+</footer>
+
+</html>
