@@ -1,3 +1,6 @@
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
     <title>Tempest</title>
 </head>
 
@@ -45,7 +48,7 @@
 
         <div class="container text-center mt-5 col-6">
             <h1>Logo</h1>
-            <img src="logo.jpeg" class="img-fluid rounded" alt="Imagem Centralizada">
+            <img src="{% static 'logo.jpeg' %}" class="img-fluid rounded" alt="Imagem Centralizada">
         </div>
         <div class="m-5"></div>
 
@@ -54,7 +57,7 @@
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-6 offset-md-3 text-center">
-                    <img src="drop.jpeg" alt="Imagem" id="imagem" style="cursor: pointer; width: 200px; height: 200px;">
+                    <img src="{% static 'logo.jpeg' %}"  alt="Imagem" id="imagem" style="cursor: pointer; width: 200px; height: 200px;">
                     <span id="conteudoParaRevelar">Conteúdo do Span</span>
                 </div>
             </div>
@@ -157,28 +160,28 @@
 
     <div class="container text-center mt-5 col-3">
         <h4 class="mt-1">Líder</h4>
-        <img src="logo.jpeg" class="img-fluid rounded" alt="Imagem Centralizada">
+        <img src="{% static 'logo.jpeg' %}"  class="img-fluid rounded" alt="Imagem Centralizada">
     </div>
 
     <div class="container text-center mt-5 col-3">
         <h4 class="mt-1">Escravo 1</h4>
-        <img src="logo.jpeg" class="img-fluid rounded" alt="Imagem Centralizada">
+        <img src="{% static 'logo.jpeg' %}"  class="img-fluid rounded" alt="Imagem Centralizada">
     </div>
 
     <div class="container text-center mt-5 col-3">
         <h4 class="mt-1">Escravo 2</h4>
-        <img src="logo.jpeg" class="img-fluid rounded" alt="Imagem Centralizada">
+        <img src="{% static 'logo.jpeg' %}"  class="img-fluid rounded" alt="Imagem Centralizada">
     </div>
 
     <div class="container text-center mt-5 col-3">
         <h4 class="mt-1">Imagem Teste</h4>
-        <img src="drop.jpeg" id="imagemExemplo" class="img-fluid rounded" alt="Imagem" data-bs-toggle="modal"
+        <img src="{% static 'drop.jpeg' %}"  id="imagemExemplo" class="img-fluid rounded" alt="Imagem" data-bs-toggle="modal"
             data-bs-target="#infoModal">
     </div>
 
     <div class="container text-center mt-5 col-3">
         <h4 class="mt-1">Imagem Teste 2</h4>
-        <img src="logo.jpeg" id="imagemExemplo" class="img-fluid rounded" alt="Imagem" data-bs-toggle="modal"
+        <img src="{% static 'logo.jpeg' %}"  id="imagemExemplo" class="img-fluid rounded" alt="Imagem" data-bs-toggle="modal"
             data-bs-target="#infoModal">
     </div>
 
@@ -191,7 +194,7 @@
                 </div>
                 <div class="modal-body">
                     <!-- Conteúdo das informações a serem exibidas -->
-                    <img src="logo.jpeg" id="imagemExemplo" class="img-fluid rounded" alt="Imagem" data-bs-toggle="modal"
+                    <img src="{% static 'logo.jpeg' %}" id="imagemExemplo" class="img-fluid rounded" alt="Imagem" data-bs-toggle="modal"
             data-bs-target="#infoModal">
                     <p>Descrição de fulano...</p>
                 </div>
