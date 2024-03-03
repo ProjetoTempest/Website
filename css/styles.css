@@ -1,4 +1,7 @@
 /*    Cabeçalho     */
+#logo{
+  width: 6vw;
+}
 #navBarContainer{
   width: 100%;
   display: flex;
