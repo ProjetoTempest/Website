@@ -1,0 +1,68 @@
+/*    Cabeçalho     */
+#navBarContainer{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#menuNavbar{
+    display: flex;
+    justify-content: space-around;
+}
+
+#menu{
+  display: flex;
+  align-items: center;
+}
+
+#login {
+    position: relative;
+    width: 50%;
+  }
+#loginImage{
+  opacity: 1;
+  display: block;
+  width: 4vw;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+#imgText{
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%)
+}
+
+#text {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1vw;
+    padding: 18px 12px;
+    border-radius: 50%;
+  }
+
+#login:hover #loginImage{
+    opacity: 0.2;
+
+}
+
+#login:hover #imgText{
+    opacity: 1;
+
+}
+
+.navbar-content{
+  text-decoration: none;
+}
+
+.navbar-child{
+    text-decoration: none;
+    margin-left: 30px;
+}
+

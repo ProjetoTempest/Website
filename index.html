@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html5>
 <html lang="en">
 
 <head>
@@ -12,7 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <title>Tempest</title>
 </head>
 
@@ -25,18 +25,26 @@
 
 <body style="background-color: #ffffff;">
     <nav class="navbar navbar-expand-sm sticky-top" style="background-color: rgb(39, 22, 132);">
-        <div class="container">
-            <a href="" class="navbar-brand d-flex align-items-center text-white">
-                TEMPEST</a>
-            <button class="navbar-toggler" type="" data-bs-toggle="collapse" data-bs-target="#menuNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="menuNavbar">
-                <div class="navbar-nav nav-underline nav-fill">
-                    <a href="#quemSomos" class="nav-link navbar-brand text-white">Quem Somos Nós</a>
-                    <a href="#servicos" class="nav-link navbar-brand text-white">Como Trabalhamos</a>
-                    <a href="#equipe" class="nav-link navbar-brand text-white">Equipe</a>
-                    <a href="" class="nav-link navbar-brand text-white">Blabla 2</a>
+        <div id="navBarContainer">
+            <a href="index.html" class="navbar-content text-white">TEMPEST</a>
+            <div class="navbar-content" id="menuNavbar">
+                <div id="menu">
+                    <a href="#sobre" class="text-white navbar-child">Sobre</a>
+                    <a href="#servicos" class="text-white navbar-child">Como Trabalhamos</a>
+                    <a href="#equipe" class="text-white navbar-child">Equipe</a>
+                    <a href="" class="text-white navbar-child">Página de Produtos</a>
+                    <a href="" class="text-white navbar-child">Serviços</a>
+                </div>
+            </div>
+            <div class="navbar-content">
+                <a href="" id="login">
+                    <img class="navbar-child" id="loginImage" src="pictures/login_image.png" alt="">
+                    <div id="imgText">
+                        <div id="text">Login</div>
+                    </div>
+                </a>
+            </div>
+            
                 </div>
             </div>
         </div>
