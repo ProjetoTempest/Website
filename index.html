@@ -1,248 +1,119 @@
-<!DOCTYPE HTML>
-<html lang="pt-br">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Tempest</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="src/css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <title>Site da Tempest</title>
 </head>
-
-<style>
-    #conteudoParaRevelar {
-        display: none;
-        margin-top: 10px;
-    }
-</style>
-
-<body style="background-color: #ffffff;">
-    <nav class="navbar navbar-expand-sm sticky-top" style="background-color: rgb(39, 22, 132);">
-        <div id="navBarContainer">
-            <a href="index.html" class="navbar-content text-white" id="logo"><img src="pictures/logo_white.svg" alt="Tempest" ></a>
-            <div class="navbar-content" id="menuNavbar">
-                <button id="navbarButton" type="button"><img src="pictures/dropdownbutton.png" alt="Drop Down Button"></button>
-                <div id="menu">
-                    <a href="#sobre" class="text-white navbar-child">Sobre</a>
-                    <a href="#servicos" class="text-white navbar-child">Como Trabalhamos</a>
-                    <a href="#equipe" class="text-white navbar-child">Equipe</a>
-                    <a href="" class="text-white navbar-child">Página de Produtos</a>
-                    <a href="" class="text-white navbar-child">Serviços</a>
-                </div>
-            </div>
-            <div class="navbar-content">
-                <a href="" id="login">
-                    <img class="navbar-child" id="loginImage" src="pictures/login_image.png" alt="">
-                    <div id="imgText">
-                        <div id="text">Login</div>
-                    </div>
-                </a>
-            </div>
-            
-                </div>
-            </div>
-        </div>
+<body>
+  <div class="menu">
+    <nav>
+      <div class="menu-icon">
+        <i class="fas fa-bars"></i>
+        <i class="fas fa-times"></i>
+      </div>
+      <div class="img-left">
+        <img class="" src="pictures/image 2-preta.png" alt="imagem">
+      </div>
+      <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#comotrabalhamos">Como Trabalhamos</a></li>
+          <li><a href="#equipe">Equipe</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#produtos">Produtos</a></li>
+      </ul>
+      <div class="icon-right">
+        <img class="nav-img" src="pictures/circle-user-regular-branco.png" alt="imagem">
+      </div>
     </nav>
-    <div class="container col-8" style="text-align: justify;">
-
-        <div class="container text-center mt-5 col-6">
-            <h1>Logo</h1>
-            <img src="logo.jpeg" class="img-fluid rounded" alt="Imagem Centralizada">
+  </div>
+  <div id="home" class="home">
+    <div class="text-section">
+      <h1>Empresa de Desenvolvimento</h1>
+      <p>Olá! Nós somos a Tempest, uma empresa apaixonada por desenvolver softwares incríveis e responsivos. Nossa Equipe é composta por 
+      desenvolvedores talentosos que se dedicam a criar soluções de software eficazes e inovadoras para atender às necessidades dos nossos clientes.</p>
+    </div>
+    <div class="image-section">
+      <img class="home-img" src="pictures/logo_white.svg" alt="imagem">
+    </div>
+  </div>
+  <div id="sobre" class="sobre">
+    <h1>Sobre</h1>
+    <div class="sobre-texto">
+      <p>Somos uma equipe de desenvolvimento de soluções por meio da aplicação da tecnologia em conjunto com análises detalhadas sobre o 
+      problema abordado por nosso cliente. Operamos na área de soluções web e desenvolvimento de jogos. Se você tem algum problema no seu 
+      negócio e acha que a tecnologia pode te ajudar, então entre em contato conosco que iremos trabalhar juntos para preparar a melhor 
+      solução para o seu problema.</p>
+    </div>
+  </div>
+  <div id="comotrabalhamos" class="comotrabalhamos">
+    <h1>Como Trabalhamos</h1>
+    <div class="comotrabalhamos-texto">
+      <p>Tudo começa a partir de uma reunião com o cliente para entender bem o problema que iremos abordar, suas dificuldades, necessidades 
+      e objetivos a serem atingidos. A Partir desta etapa serão elaboradas propostas de solução para o cliente de forma que a melhor proposta 
+      seja definida pelo cliente. A Partir da definição da proposta irá se iniciar o desenvolvimento do produto final.</p>
+      <div class="comotrabalhamos-paragrafo">
+        <p>O desenvolvimento engloba as seguintes etapas:</p>
+      </div>
+      <div class="comotrabalhamos-items">
+        <ul>
+          <li>Desenvolvimento das Telas da Aplicação com Alta Fidelidade (Telas com animações e execução previamente planejada).</li>
+          <li>Definição das Funcionalidades.</li>
+          <li>Divisão das Entregas em Funcionalidades mensalmente.</li>
+          <li>Implantação das funcionalidades.</li>
+          <li>Conclusão do projeto.</li>
+          <li>Manutenções posteriores</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div id="equipe" class="equipe">
+    <h1>Equipe</h1>
+    <div class="equipe-content">
+      <div class="equipe-container">
+        <div class="equipe-cargo">
+          <h4>CEO</h4>
         </div>
-        <div class="m-5"></div>
-
-
-        <!--Imagem Teste-->
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-md-6 offset-md-3 text-center">
-                    <img src="drop.jpeg" alt="Imagem" id="imagem" style="cursor: pointer; width: 200px; height: 200px;">
-                    <span id="conteudoParaRevelar">Conteúdo do Span</span>
-                </div>
-            </div>
+        <div class="equipe-img">
+          <img src="pictures/Frame 15.png" alt="imagem">
         </div>
-
-        <!--Script da Imagem Teste-->
-        <script>
-            document.getElementById('imagem').addEventListener('click', function () {
-                var conteudoParaRevelar = document.getElementById('conteudoParaRevelar');
-                conteudoParaRevelar.style.display = conteudoParaRevelar.style.display === 'none' ? 'inline' : 'none';
-            });
-        </script>
-
-        <div class="mt-5">
-            <h5 id="quemSomos">Quem Somos</h5>
-            <p class="lead">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus dicta in officiis error quis quidem quae
-                delectus
-                voluptatum, magnam placeat provident sequi, alias reprehenderit animi consequuntur voluptate id esse
-                ratione excepturi.
-                Ad quia libero maiores quibusdam ex molestias dolore, ipsa unde deserunt delectus et soluta. Facilis
-                quidem, beatae
-                rerum eos error nesciunt consectetur sapiente fugit, odit veritatis nam quisquam maiores debitis impedit
-                obcaecati
-                minima. Aliquid, molestias! At in nam cum corrupti facere quisquam a modi similique distinctio, eligendi
-                quaerat ex
-                reiciendis exercitationem. Sapiente quod excepturi, incidunt, placeat non animi nostrum deleniti minima
-                laboriosam
-                asperiores eaque ducimus error tenetur quisquam ipsam?
-            </p>
-            <div id="servicos">
-                <ul class="list-group mt-5">
-                    <h5>Serviços</h5>
-                    Item A
-                    Item B
-                    Item C
-                    Item D
-                </ul>
-            </div>
+        <div class="equipe-especialidade">
+          <h4>Mauricio</h4>
+          <p>Especialidade: Análise de dados</p>
         </div>
-        <div id="equipe">
-            <p class="lead mt-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore atque veniam magni
-                consequuntur provident corrupti,
-                reprehenderit quaerat, quia ratione dolor vel accusamus, ad dolores est. Ratione vel voluptates
-                consequuntur ipsam,
-                non similique quod qui repudiandae corporis porro eveniet, odit quibusdam, ut mollitia repellat id quia
-                natus
-                architecto! In cum, delectus voluptatum cupiditate soluta iusto eligendi nostrum consectetur ullam quia
-                fugiat
-                labore quisquam voluptates quam velit praesentium eos officiis minus, eum incidunt? Consequuntur iste
-                ipsam non
-                voluptatum suscipit, rerum corrupti aliquid in possimus. Quam inventore sint, dolor suscipit quis
-                placeat ea nobis
-                aliquam eum corrupti officiis. Delectus vel temporibus voluptatibus eligendi.</p>
-            <ul class="list-group mt-5">
-                <h5>Equipe</h5>
-                Item A
-                Item B
-                Item C
-            </ul>
+      </div>
+      <div class="equipe-container">
+        <div class="equipe-cargo">
+          <h4>CEO</h4>
         </div>
-
-        <p class="lead mt-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus dicta in officiis error quis quidem quae
-            delectus
-            voluptatum, magnam placeat provident sequi, alias reprehenderit animi consequuntur voluptate id esse ratione
-            excepturi.
-            Ad quia libero maiores quibusdam ex molestias dolore, ipsa unde deserunt delectus et soluta. Facilis quidem,
-            beatae
-            rerum eos error nesciunt consectetur sapiente fugit, odit veritatis nam quisquam maiores debitis impedit
-            obcaecati
-            minima. Aliquid, molestias! At in nam cum corrupti facere quisquam a modi similique distinctio, eligendi
-            quaerat ex
-            reiciendis exercitationem. Sapiente quod excepturi, incidunt, placeat non animi nostrum deleniti minima
-            laboriosam
-            asperiores eaque ducimus error tenetur quisquam ipsam?
-        </p>
-        <p class="lead mt-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus dicta in officiis error quis quidem quae
-            delectus
-            voluptatum, magnam placeat provident sequi, alias reprehenderit animi consequuntur voluptate id esse ratione
-            excepturi.
-            Ad quia libero maiores quibusdam ex molestias dolore, ipsa unde deserunt delectus et soluta. Facilis quidem,
-            beatae
-            rerum eos error nesciunt consectetur sapiente fugit, odit veritatis nam quisquam maiores debitis impedit
-            obcaecati
-            minima. Aliquid, molestias! At in nam cum corrupti facere quisquam a modi similique distinctio, eligendi
-            quaerat ex
-            reiciendis exercitationem. Sapiente quod excepturi, incidunt, placeat non animi nostrum deleniti minima
-            laboriosam
-            asperiores eaque ducimus error tenetur quisquam ipsam?
-        </p>
-
-
-    </div>
-
-    <div class="container col-8" style="text-align: justify;">
-        <h5 class="text-center mt-5">MEMBROS TEMPEST</h5>
-    </div>
-
-    <div class="container text-center mt-5 col-3">
-        <h4 class="mt-1">Líder</h4>
-        <img src="logo.jpeg" class="img-fluid rounded" alt="Imagem Centralizada">
-    </div>
-
-    <div class="container text-center mt-5 col-3">
-        <h4 class="mt-1">Escravo 1</h4>
-        <img src="logo.jpeg" class="img-fluid rounded" alt="Imagem Centralizada">
-    </div>
-
-    <div class="container text-center mt-5 col-3">
-        <h4 class="mt-1">Escravo 2</h4>
-        <img src="logo.jpeg" class="img-fluid rounded" alt="Imagem Centralizada">
-    </div>
-
-    <div class="container text-center mt-5 col-3">
-        <h4 class="mt-1">Imagem Teste</h4>
-        <img src="drop.jpeg" id="imagemExemplo" class="img-fluid rounded" alt="Imagem" data-bs-toggle="modal"
-            data-bs-target="#infoModal">
-    </div>
-
-    <div class="container text-center mt-5 col-3">
-        <h4 class="mt-1">Imagem Teste 2</h4>
-        <img src="logo.jpeg" id="imagemExemplo" class="img-fluid rounded" alt="Imagem" data-bs-toggle="modal"
-            data-bs-target="#infoModal">
-    </div>
-
-    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nome de Fulano</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Conteúdo das informações a serem exibidas -->
-                    <img src="logo.jpeg" id="imagemExemplo" class="img-fluid rounded" alt="Imagem" data-bs-toggle="modal"
-            data-bs-target="#infoModal">
-                    <p>Descrição de fulano...</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                </div>
-            </div>
+        <div class="equipe-img">
+          <img src="pictures/Frame 15.png" alt="imagem">
         </div>
+        <div class="equipe-especialidade">
+          <h4>Mauricio</h4>
+          <p>Especialidade: Análise de dados</p>
+        </div>
+      </div>
+      <div class="equipe-container">
+        <div class="equipe-cargo">
+          <h4>CEO</h4>
+        </div>
+        <div class="equipe-img">
+          <img src="pictures/Frame 15.png" alt="imagem">
+        </div>
+        <div class="equipe-especialidade">
+          <h4>Mauricio</h4>
+          <p>Especialidade: Análise de dados</p>
+        </div>
+      </div>
     </div>
-
-    <!-- Bootstrap JavaScript (popper.js included) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <!-- Smooth Scroll JavaScript -->
-    <script>
-        // Adiciona rolagem suave a todos os links com hash
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
-
+  </div>
+  <footer>
+    <p>&copy; 2024 Projeto Tempest. Todos os direitos reservados.</p>
+  </footer>
+  <script src="./src/js/main.js"></script>
 </body>
-
-<footer class="text-black accordion-collapse text-start" style="background-color:  rgb(39, 22, 132);">
-    <div class="bg-transparent">
-
-    </div>
-    </nav>
-    <hr>
-    <div class="col-12 text-center">
-        <span class="d-flex justify-content-center" style="color: rgb(255, 255, 255);">&copy;2023 - Projeto Tempest</span>
-    </div>
-    <span class="ms-2">
-
-    </span>
-</footer>
-
 </html>
