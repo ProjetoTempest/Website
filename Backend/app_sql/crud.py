@@ -23,6 +23,19 @@ def get_user_by_email(db: Session, email: str):
     return db.exec(query).first()
     # return db.query(models.User).filter(models.User.email == email).first()
 
+def get_user_by_email_password(db: Session, email: str, password: str):
+    query = select(schemas.User).where(schemas.User.email == email)
+    user_db = db.exec(query).first()
+
+    if user_db.password == password:
+        user_db = user_db.model_dump()
+
+        user_db.pop('password')
+        user_db.pop('cargotes')
+
+        return user_db
+    else:
+        return None
 
 # def get_users(db: Session, skip: int = 0, limit: int = 100):
 #     return db.query(models.User).offset(skip).limit(limit).all()
