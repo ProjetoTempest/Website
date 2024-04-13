@@ -51,3 +51,11 @@ session = Session(engine)
     # # a = UserBase(**user_data)
     # # print(a)
     # print(user_data)
+
+# Dependency
+def get_db():
+    db = session
+    try:
+        yield db
+    finally:
+        db.close()
