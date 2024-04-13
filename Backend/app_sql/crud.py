@@ -8,7 +8,14 @@ def get_user(db: Session, user_id: int):
     # return db.query(models.User).filter(models.User.id == user_id).first()
     # return db.query(schemas.User).filter(models.User.id == user_id).first()
     query = select(schemas.User).where(schemas.User.id == user_id)
-    return db.exec(query).first()
+    user_db = db.exec(query).first()
+
+    user_db = user_db.model_dump()
+
+    user_db.pop('password')
+    user_db.pop('cargotes')
+
+    return user_db
 
 
 def get_user_by_email(db: Session, email: str):
