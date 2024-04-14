@@ -20,19 +20,11 @@ def get_user_by_email(db: Session, email: str):
     return db.exec(query).first()
 
 def get_user_by_email_password(db: Session, email: str, password: str):
-    print(email)
     user_db = get_user_by_email(db, email)
-    # select(schemas.User).where(schemas.User.email == email)
-    # user_db = db.exec(query).first()
-    print(user_db.email)
+
     if user_db.password == password:
         user_db = user_db.model_dump()
-
-        # user_db.pop('password')
-        # user_db.pop('cargotes')
-
         return user_db
-   
     return None
 
 # def get_users(db: Session, skip: int = 0, limit: int = 100):
@@ -40,20 +32,13 @@ def get_user_by_email_password(db: Session, email: str, password: str):
 
 
 def create_user(db: Session, user: schemas.User):
-    # fake_hashed_password = user.password + "notreallyhashed"
     db_user = schemas.User(name=user.name, email=user.email, cargotes=user.cargotes, photo=user.photo, description=user.description, password=user.password)
 
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
 
-    a=db_user.model_dump()
-    print(type(a))
-    a.pop('password')
-    # a.pop('email')
-    a.pop('cargotes')
-
-    return a
+    return db_user
 
 
     # print(user.model_dump())
