@@ -50,6 +50,7 @@ class ImagesService(SQLModel, table=True):
 class UserBase(SQLModel):
     name: str
     email: str
+    cargotes: int
     photo: Optional[str] = None
     description: Optional[str] = None 
 
