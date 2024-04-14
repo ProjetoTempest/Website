@@ -1,5 +1,5 @@
 # from sqlalchemy.orm import Session
-from sqlmodel import Session, select
+from sqlmodel import Session, select, delete, and_
 from . import schemas
 
 
@@ -20,12 +20,13 @@ def get_user_by_email(db: Session, email: str):
     return db.exec(query).first()
 
 def get_user_by_email_password(db: Session, email: str, password: str):
-    user_db = get_user_by_email(db, email)
+    query = select(schemas.User).where(schemas.User.email == email, schemas.User.password == password)
+    user_db = db.exec(query)
 
-    if user_db.password == password:
-        user_db = user_db.model_dump()
-        return user_db
-    return None
+    if user_db is None:
+        return None
+    
+    return user_db
 
 def get_users(db: Session, skip: int = 0, limit: int = 100):
     query = select(schemas.User).offset(skip).limit(limit)
@@ -41,6 +42,7 @@ def create_user(db: Session, user: schemas.User):
     db.refresh(db_user)
 
     return db_user
+
 
 
     # print(user.model_dump())
