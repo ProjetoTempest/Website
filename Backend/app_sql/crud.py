@@ -1,12 +1,9 @@
 # from sqlalchemy.orm import Session
 from sqlmodel import Session, select
-
-from . import models, schemas
+from . import schemas
 
 
 def get_user(db: Session, user_id: int):
-    # return db.query(models.User).filter(models.User.id == user_id).first()
-    # return db.query(schemas.User).filter(models.User.id == user_id).first()
     query = select(schemas.User).where(schemas.User.id == user_id)
     user_db = db.exec(query).first()
 
@@ -21,21 +18,22 @@ def get_user(db: Session, user_id: int):
 def get_user_by_email(db: Session, email: str):
     query = select(schemas.User).where(schemas.User.email == email)
     return db.exec(query).first()
-    # return db.query(models.User).filter(models.User.email == email).first()
 
 def get_user_by_email_password(db: Session, email: str, password: str):
-    query = select(schemas.User).where(schemas.User.email == email)
-    user_db = db.exec(query).first()
-
+    print(email)
+    user_db = get_user_by_email(db, email)
+    # select(schemas.User).where(schemas.User.email == email)
+    # user_db = db.exec(query).first()
+    print(user_db.email)
     if user_db.password == password:
         user_db = user_db.model_dump()
 
-        user_db.pop('password')
-        user_db.pop('cargotes')
+        # user_db.pop('password')
+        # user_db.pop('cargotes')
 
         return user_db
-    else:
-        return None
+   
+    return None
 
 # def get_users(db: Session, skip: int = 0, limit: int = 100):
 #     return db.query(models.User).offset(skip).limit(limit).all()
