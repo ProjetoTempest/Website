@@ -22,7 +22,6 @@ def get_user_by_email(db: Session, email: str):
 def get_user_by_email_password(db: Session, email: str, password: str):
     query = select(schemas.User).where(schemas.User.email == email, schemas.User.password == password)
     user_db = db.exec(query).first()
-    
     return user_db
 
 def get_users(db: Session, skip: int = 0, limit: int = 100):
@@ -40,6 +39,15 @@ def create_user(db: Session, user: schemas.User):
 
     return db_user
 
+
+def delete_user_by_email_password(db: Session, email: str, password: str):
+    user_db = get_user_by_email_password(db=db, email=email, password=password)
+    if user_db is None:
+        return None
+    query = delete(schemas.User).where(schemas.User.email == email, schemas.User.password == password)
+    db.exec(query)
+    db.commit()
+    return user_db
 
 
     # print(user.model_dump())

@@ -34,6 +34,15 @@ def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     users = crud.get_users(db, skip=skip, limit=limit)
     return users
 
+@routerUser.delete("/delete/{email}/{password}", response_model= schemas.UserBase)
+def delete_user(email:str, password:str, db:Session = Depends(get_db)):
+    flag = crud.delete_user_by_email_password(db=db, email=email, password=password)
+
+    if flag is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return flag
+
+
 
 # @app.get("/users/{user_id}", response_model=schemas.User)
 # def read_user(user_id: int, db: Session = Depends(get_db)):
