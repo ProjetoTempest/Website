@@ -21,10 +21,7 @@ def get_user_by_email(db: Session, email: str):
 
 def get_user_by_email_password(db: Session, email: str, password: str):
     query = select(schemas.User).where(schemas.User.email == email, schemas.User.password == password)
-    user_db = db.exec(query)
-
-    if user_db is None:
-        return None
+    user_db = db.exec(query).first()
     
     return user_db
 
