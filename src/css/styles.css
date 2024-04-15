@@ -31,6 +31,11 @@ footer p {
   color: white;
 }
 
+.sobre, .equipe {
+  background-color: white;
+  color: #010570;
+}
+
 
 /* Estilo para o menu */
 .menu {
@@ -73,12 +78,13 @@ footer p {
 
 .img-left {
   display: flex; 
-  justify-content: center; 
+  justify-content: center;
+  padding-left: 1rem; 
 }
 
 .img-left img {
-  width: 70%;
-  height: 70%;
+  width: 2rem;
+  height: 2rem;
 }
 
 .icon-right {
@@ -163,6 +169,7 @@ footer p {
 /* Estilo para a página Sobre */
 .sobre {
   width: 100%;
+  margin: 0 auto;
   padding: 5rem;
   text-align: center;
 }
@@ -201,7 +208,7 @@ footer p {
 }
 
 .comotrabalhamos-paragrafo p {
-  padding: 1rem 8rem;
+  padding: 1rem;
 }
 
 .comotrabalhamos-items {
@@ -227,9 +234,10 @@ footer p {
 }
 
 .equipe {
+  margin-top: 5rem;
   width: 100%;
   height: auto;
-  padding: 5rem;
+
   text-align: center;
   display: block;
 }
@@ -339,7 +347,7 @@ footer p {
     top: 0;
     padding-bottom: 20rem;
     left: -100%;
-    width: 40%;
+    width: 50%;
     height: 100vh;
     flex-direction: column;
     justify-content: center;
@@ -412,10 +420,14 @@ footer p {
     padding: 2rem 1rem;
     font-size: 1rem;
   }
+
+  .equipe {
+    padding: 1rem;
+  }
 }
 
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 440px) {
   .home {
     padding: 15vh 10vh;
   }
