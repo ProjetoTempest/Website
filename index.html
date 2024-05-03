@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="src/css/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Site da Tempest</title>
 </head>
 <body>
@@ -24,6 +25,7 @@
           <li><a href="#equipe">Equipe</a></li>
           <li><a href="#servicos">Serviços</a></li>
           <li><a href="#produtos">Produtos</a></li>
+          <li><a href="#contato">Contato</a></li>
       </ul>
       <div class="icon-right">
         <img class="nav-img" src="pictures/circle-user-regular-branco.png" alt="imagem">
@@ -67,52 +69,262 @@
           <li>Manutenções posteriores</li>
         </ul>
       </div>
+      <div class="img-comoTrabalhamos">
+        <img src="pictures/8497398_3937434.jpg" alt="imagem">
+      </div>
     </div>
   </div>
   <div id="equipe" class="equipe">
     <h1>Equipe</h1>
     <div class="equipe-content">
-      <div class="equipe-container">
-        <div class="equipe-cargo">
-          <h4>CEO</h4>
+      <button id="prev" class="button"><i class="fas fa-chevron-left"></i></button>
+      <div class="carrossel-container">
+        <div class="equipe-container">
+          <div class="equipe-cargo">
+            <h4>CEO</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/Frame 15.png" alt="imagem">
+          </div>
+          <div class="equipe-especialidade">
+            <h4>Mauricio</h4>
+            <p>Especialidade: Análise de dados</p>
+          </div>
         </div>
-        <div class="equipe-img">
-          <img src="pictures/Frame 15.png" alt="imagem">
+        <div class="equipe-container">
+          <div class="equipe-cargo">
+            <h4>CEO</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/Frame 15.png" alt="imagem">
+          </div>
+          <div class="equipe-especialidade">
+            <h4>Anyel</h4>
+            <p>Especialidade: Análise de dados</p>
+          </div>
         </div>
-        <div class="equipe-especialidade">
-          <h4>Mauricio</h4>
-          <p>Especialidade: Análise de dados</p>
+        <div class="equipe-container">
+          <div class="equipe-cargo">
+            <h4>DEV</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/Frame 15.png" alt="imagem">
+          </div>
+          <div class="equipe-especialidade">
+            <h4>Renan</h4>
+            <p>Especialidade: Back-end</p>
+          </div>
+        </div>
+        <div class="equipe-container">
+          <div class="equipe-cargo">
+            <h4>DEV</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/Frame 15.png" alt="imagem">
+          </div>
+          <div class="equipe-especialidade">
+            <h4>Adriano</h4>
+            <p>Especialidade: Mobile</p>
+          </div>
+        </div>
+        <div class="equipe-container">
+          <div class="equipe-cargo">
+            <h4>DEV</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/Frame 15.png" alt="imagem">
+          </div>
+          <div class="equipe-especialidade">
+            <h4>Augusto</h4>
+            <p>Especialidade: Front-End</p>
+          </div>
+        </div>
+        <div class="equipe-container">
+          <div class="equipe-cargo">
+            <h4>DEV</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/Frame 15.png" alt="imagem">
+          </div>
+          <div class="equipe-especialidade">
+            <h4>Luis</h4>
+            <p>Especialidade: Front-End</p>
+          </div>
+        </div>
+        <div class="equipe-container">
+          <div class="equipe-cargo">
+            <h4>DEV</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/Frame 15.png" alt="imagem">
+          </div>
+          <div class="equipe-especialidade">
+            <h4>Vinicius</h4>
+            <p>Especialidade: Back-end</p>
+          </div>
+        </div>
+        <div class="equipe-container">
+          <div class="equipe-cargo">
+            <h4>DEV</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/Frame 15.png" alt="imagem">
+          </div>
+          <div class="equipe-especialidade">
+            <h4>Vinicius</h4>
+            <p>Especialidade: Back-end</p>
+          </div>
+        </div>
+        <div class="equipe-container">
+          <div class="equipe-cargo">
+            <h4>DEV</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/Frame 15.png" alt="imagem">
+          </div>
+          <div class="equipe-especialidade">
+            <h4>Vinicius</h4>
+            <p>Especialidade: Back-end</p>
+          </div>
+        </div>
+        
+      </div>
+      <button id="next" class="button"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+  <div id="servicos" class="servicos">
+    <div class="service">
+      <h1>Serviços</h1> 
+    </div>
+    <div class="servicos-content">
+      <div class="servicos-container">
+        <div class="name-service">
+          <h4>Manutenção</h4>
+        </div>
+        <div class="servicos-img">
+          <img src="pictures/Ellipse 15.png" alt="imagem">
+        </div>
+        <div class="servicos-vermais">
+          <button>Ver mais</button>
         </div>
       </div>
-      <div class="equipe-container">
-        <div class="equipe-cargo">
-          <h4>CEO</h4>
+      <div class="servicos-container">
+        <div class="name-service">
+          <h4>Construção</h4>
         </div>
-        <div class="equipe-img">
-          <img src="pictures/Frame 15.png" alt="imagem">
+        <div class="servicos-img">
+          <img src="pictures/Ellipse 16.png" alt="imagem">
         </div>
-        <div class="equipe-especialidade">
-          <h4>Mauricio</h4>
-          <p>Especialidade: Análise de dados</p>
-        </div>
-      </div>
-      <div class="equipe-container">
-        <div class="equipe-cargo">
-          <h4>CEO</h4>
-        </div>
-        <div class="equipe-img">
-          <img src="pictures/Frame 15.png" alt="imagem">
-        </div>
-        <div class="equipe-especialidade">
-          <h4>Mauricio</h4>
-          <p>Especialidade: Análise de dados</p>
+        <div class="servicos-vermais">
+          <button>Ver mais</button>
         </div>
       </div>
+      <div class="servicos-container">
+        <div class="name-service">
+          <h4>Customização</h4>
+        </div>
+        <div class="servicos-img">
+          <img src="pictures/Ellipse 17.png" alt="imagem">
+        </div>
+        <div class="servicos-vermais">
+          <button>Ver mais</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="produto" class="produto">
+    <h1>Produto</h1>
+    <div class="produto-content">
+      <button id="prevP" class="button"><i class="fas fa-chevron-left"></i></button>
+      <div class="carrossel-containerP">
+        <div class="produto-container">
+          <div class="produto-name">
+            <h4>Name Product1</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/produtosex.avif" alt="imagem">
+          </div>
+          <div class="servicos-vermais">
+            <button>Ver mais</button>
+          </div>
+        </div>
+        <div class="produto-container">
+          <div class="produto-name">
+            <h4>Name Product2</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/produtosex.avif" alt="imagem">
+          </div>
+          <div class="servicos-vermais">
+            <button>Ver mais</button>
+          </div>
+        </div>
+        <div class="produto-container">
+          <div class="produto-name">
+            <h4>Name Product3</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/produtosex.avif" alt="imagem">
+          </div>
+          <div class="servicos-vermais">
+            <button>Ver mais</button>
+          </div>
+        </div>
+        <div class="produto-container">
+          <div class="produto-name">
+            <h4>Name Product4</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/produtosex.avif" alt="imagem">
+          </div>
+          <div class="servicos-vermais">
+            <button>Ver mais</button>
+          </div>
+        </div>
+        <div class="produto-container">
+          <div class="produto-name">
+            <h4>Name Product5</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/produtosex.avif" alt="imagem">
+          </div>
+          <div class="servicos-vermais">
+            <button>Ver mais</button>
+          </div>
+        </div>   
+        <div class="produto-container">
+          <div class="produto-name">
+            <h4>Name Product6</h4>
+          </div>
+          <div class="equipe-img">
+            <img src="pictures/produtosex.avif" alt="imagem">
+          </div>
+          <div class="servicos-vermais">
+            <button>Ver mais</button>
+          </div>
+        </div>     
+      </div>
+      <button id="nextP" class="button"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+  <div id="contato" class="contato">
+    <h1>Entre em Contato</h1>
+    <div class="formulario">
+      <form id="formContato">
+        <label for="nome">Nome:</label><br>
+        <input type="text" id="nome" name="nome"><br>
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email"><br>
+        <label for="mensagem">Mensagem:</label><br>
+        <textarea id="mensagem" name="mensagem"></textarea><br>
+        <input type="submit" value="Enviar">
+      </form>
     </div>
   </div>
   <footer>
     <p>&copy; 2024 Projeto Tempest. Todos os direitos reservados.</p>
   </footer>
   <script src="./src/js/main.js"></script>
+  <script src="./src/js/cargo.js"></script>
 </body>
 </html>
