@@ -60,6 +60,21 @@ class User(UserBase, table=True):
     cargotes: int = Field(foreign_key='cargo.id')
 
 
+class TecnologiaBase(SQLModel):
+    title: str
+    description: Optional[str] = None
+    link: str
+    icon: str
+
+class Tecnologia(TecnologiaBase, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+
+class UserTecnologia(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    user_id: int = Field(foreign_key="user.id")
+    tecnologia_id: int = Field(foreign_key="tecnologia.id")
+
+
 # sqlite_file_name = "database.db"
 # sqlite_url = f"sqlite:///{sqlite_file_name}"
 
