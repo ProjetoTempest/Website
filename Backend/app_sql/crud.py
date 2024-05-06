@@ -79,6 +79,16 @@ def update_product(db: Session, product_id: int, product: schemas.Products):
     db.commit()
     # return product_db
 
+def delete_product(db: Session, product_id: int):
+    product_db = get_product(db=db, product_id=product_id)
+
+    if product_db is not None:
+        query = delete(schemas.Products).where(schemas.Products.id == product_id)
+        db.exec(query)
+        db.commit()
+
+    return product_db
+
 # def get_items(db: Session, skip: int = 0, limit: int = 100):
 #     return db.query(models.Item).offset(skip).limit(limit).all()
 
