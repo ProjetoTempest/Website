@@ -95,10 +95,19 @@ def create_link_product_user(product_id: int, user_id: int, db: Session = Depend
     crud.create_link_product_user(db=db, product_id=product_id, user_id=user_id)
     return {"message": "Link created successfully"}
 
-@routerProduct.get("/get_products_user/{user_id}", response_model=list[schemas.Products])
+@routerProduct.get("/get_products_by_user/{user_id}", response_model=list[schemas.Products])
 def get_products_user(user_id: int, db: Session = Depends(get_db)):
     user = crud.get_user(db=db, user_id=user_id)
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
     products = crud.get_products_by_user(db=db, user_id=user.id)
     return products
+
+@routerProduct.get("/get_user_by_product/{product_id}", response_model=list[schemas.User])
+def get_user_product(product_id: int, db: Session = Depends(get_db)):
+    product = crud.get_product(db=db, product_id=product_id)
+    if product is None:
+        raise HTTPException(status_code=404, detail="product not found")
+    users = crud.get_user_by_product(db=db, product_id=product.id)
+
+    return users
