@@ -97,6 +97,16 @@ def create_link_product_user(db: Session, product_id: int, user_id: int):
 
     return db_product_user
 
+def update_userid_link_product(db: Session, id_relacao: int, id_user: int):
+    query = update(schemas.IntermediariaUserProducts).where(schemas.IntermediariaUserProducts.id == id_relacao).values(user_id=id_user)
+    db.exec(query)
+    db.commit()
+
+    query = select(schemas.IntermediariaUserProducts).where(schemas.IntermediariaUserProducts.id == id_relacao)
+    relacao_Product_User = db.exec(query).first()
+
+    return relacao_Product_User
+
 def get_relacao_product_user_create(db: Session, id_user: int, id_product: int):
     query = select(schemas.IntermediariaUserProducts).where(schemas.IntermediariaUserProducts.user_id == id_user, schemas.IntermediariaUserProducts.products_id == id_product)
     relacao_Product_User = db.exec(query).first()

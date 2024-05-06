@@ -84,7 +84,7 @@ def delete_product(product_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Product not found")
     return db_product
 
-@routerProduct.put("/create_link_product_user/{product_id}/{user_id}")
+@routerProduct.post("/create_link_product_user/{product_id}/{user_id}")
 def create_link_product_user(product_id: int, user_id: int, db: Session = Depends(get_db)):
     prod = crud.get_product(db=db, product_id=product_id)
     user = crud.get_user(db=db, user_id=user_id)
@@ -127,6 +127,13 @@ def get_user_product(product_id: int, db: Session = Depends(get_db)):
     users = crud.get_user_by_product(db=db, product_id=product.id)
 
     return users
+
+@routerProduct.put("/update_userid_link_product/{id_relacao}/{user_id}", response_model=schemas.IntermediariaUserProducts)
+def update_userid_link_product(id_relacao:int, user_id:int, db: Session = Depends(get_db)):
+    relacao = crud.update_userid_link_product(db=db, id_relacao=id_relacao, id_user=user_id)
+    if relacao is None:
+        raise HTTPException(status_code=404, detail="Relacao not found")
+    return relacao
 
 @routerProduct.delete("/delete_link_product_user/{id_relacao}", response_model=schemas.IntermediariaUserProducts)
 def delete_link_product_user(id_relacao: int, db: Session = Depends(get_db)):
