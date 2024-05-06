@@ -58,6 +58,11 @@ def delete_user(email:str, password:str, db:Session = Depends(get_db)):
 def create_product(product: schemas.Products, db: Session = Depends(get_db)):
     return crud.create_product(db=db, product=product)
 
+@routerProduct.get("/", response_model=list[schemas.Products])
+def read_products(db: Session = Depends(get_db)):
+    products = crud.get_products(db)
+    return products
+
 # @app.get("/users/{user_id}", response_model=schemas.User)
 # def read_user(user_id: int, db: Session = Depends(get_db)):
 #     db_user = crud.get_user(db, user_id=user_id)

@@ -63,13 +63,17 @@ def delete_user_by_email_password(db: Session, email: str, password: str):
     return user_db
 
 def create_product(db: Session, product: schemas.Products):
-    # print(**product)
     db_product = schemas.Products(title=product.title, description=product.description, images=product.images, value=product.value)
     
     db.add(db_product)
     db.commit()
     db.refresh(db_product)
     return db_product
+
+def get_products(db: Session):
+    query = select(schemas.Products)
+    products_db = db.exec(query)
+    return products_db
 
 # def get_items(db: Session, skip: int = 0, limit: int = 100):
 #     return db.query(models.Item).offset(skip).limit(limit).all()
