@@ -1,5 +1,5 @@
 # from sqlalchemy.orm import Session
-from sqlmodel import Session, select, delete, update
+from sqlmodel import Session, select, delete, update, join
 from . import schemas
 
 
@@ -108,15 +108,7 @@ def get_products_by_user(db: Session, user_id: int):
     return product_db
 
 def get_user_by_product(db: Session, product_id: int):
-    query = select(schemas.IntermediariaUserProducts).where(schemas.IntermediariaUserProducts.products_id == product_id)
+    query = select(schemas.User).join(schemas.IntermediariaUserProducts, schemas.User.id == schemas.IntermediariaUserProducts.user_id).where(schemas.IntermediariaUserProducts.products_id == product_id)
+
     relacao_Product_User = db.exec(query).all()
-
-    user_db = []
-
-    print(relacao_Product_User)
-
-    for user in relacao_Product_User:
-        query = select(schemas.User).where(schemas.User.id == user.user_id)
-        user_db.append(db.exec(query).first())
-
-    return user_db
+    return relacao_Product_User
