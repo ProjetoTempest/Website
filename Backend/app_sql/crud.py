@@ -99,7 +99,7 @@ def create_link_product_user(db: Session, product_id: int, user_id: int):
 
 def get_relacao_product_user(db: Session):
     query = select(schemas.IntermediariaUserProducts)
-    relacao_Product_User = db.exec(query)
+    relacao_Product_User = db.exec(query).all()
     return relacao_Product_User
 
 def get_products_by_user(db: Session, user_id: int):
