@@ -70,3 +70,16 @@ def read_product(product_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Product not found")
     return product
 
+@routerProduct.put("/update/{product_id}", response_model=schemas.Products)
+def update_product(product_id: int, product: schemas.Products, db: Session = Depends(get_db)):
+    db_product = crud.update_product(db=db, product_id=product_id, product=product)
+    # if db_product is None:
+        # raise HTTPException(status_code=404, detail="Product not found")
+    # return db_product
+
+# @routerProduct.delete("/delete/{product_id}", response_model=schemas.Products)
+# def delete_product(product_id: int, db: Session = Depends(get_db)):
+#     db_product = crud.delete_product(db=db, product_id=product_id)
+#     if db_product is None:
+#         raise HTTPException(status_code=404, detail="Product not found")
+#     return db_product

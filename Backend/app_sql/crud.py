@@ -73,7 +73,11 @@ def get_product(db: Session, product_id: int):
     product_db = db.exec(query).first()
     return product_db
 
-
+def update_product(db: Session, product_id: int, product: schemas.Products):
+    query = update(schemas.Products).where(schemas.Products.id == product_id).values(title=product.title, description=product.description, value=product.value)
+    db.exec(query)
+    db.commit()
+    # return product_db
 
 # def get_items(db: Session, skip: int = 0, limit: int = 100):
 #     return db.query(models.Item).offset(skip).limit(limit).all()
