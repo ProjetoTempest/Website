@@ -89,6 +89,14 @@ def delete_product(db: Session, product_id: int):
 
     return product_db
 
+def create_link_product_user(db: Session, product_id: int, user_id: int):
+    db_product_user = schemas.IntermediariaUserProducts(user_id=user_id, products_id=product_id)
+    db.add(db_product_user)
+    db.commit()
+    db.refresh(db_product_user)
+
+    return db_product_user
+
 # def get_items(db: Session, skip: int = 0, limit: int = 100):
 #     return db.query(models.Item).offset(skip).limit(limit).all()
 
