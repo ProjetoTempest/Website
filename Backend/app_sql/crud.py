@@ -97,13 +97,12 @@ def create_link_product_user(db: Session, product_id: int, user_id: int):
 
     return db_product_user
 
-# def get_items(db: Session, skip: int = 0, limit: int = 100):
-#     return db.query(models.Item).offset(skip).limit(limit).all()
+def get_products_by_user(db: Session, user_id: int):
+    query = select(schemas.IntermediariaUserProducts).where(schemas.IntermediariaUserProducts.user_id == user_id)
+    relacao_Product_User = db.exec(query).all()
 
-
-# def create_user_item(db: Session, item: schemas.ProductsCreate, user_id: int):
-#     db_item = models.Products(**item.dict(), owner_id=user_id)
-#     db.add(db_item)
-#     db.commit()
-#     db.refresh(db_item)
-#     return db_item
+    product_db = []
+    for product in relacao_Product_User:
+        query = select(schemas.Products).where(schemas.Products.id == product.products_id)
+        product_db.append(db.exec(query).first())
+    return product_db
