@@ -101,7 +101,13 @@ def get_relacao_product_user(db: Session = Depends(get_db)):
     relacao = crud.get_relacao_product_user(db=db)
     # print("passou aqui route2")
     return relacao
-    return {"message": "Link created successfully"}
+
+@routerProduct.get("/get_relacao_product_user/{id_relacao}", response_model=schemas.IntermediariaUserProducts)
+def get_relacao_product_user_id(id_relacao: int, db: Session = Depends(get_db)):
+    relacao = crud.get_relacao_product_user_id(db=db, id=id_relacao)
+    if relacao is None:
+        raise HTTPException(status_code=404, detail="Relacao not found")
+    return relacao
 
 @routerProduct.get("/get_products_by_user/{user_id}", response_model=list[schemas.Products])
 def get_products_user(user_id: int, db: Session = Depends(get_db)):
@@ -119,3 +125,10 @@ def get_user_product(product_id: int, db: Session = Depends(get_db)):
     users = crud.get_user_by_product(db=db, product_id=product.id)
 
     return users
+
+@routerProduct.delete("/delete_link_product_user/{id_relacao}", response_model=schemas.IntermediariaUserProducts)
+def delete_link_product_user(id_relacao: int, db: Session = Depends(get_db)):
+    relacao = crud.delete_link_product_user(db=db, id_relacao=id_relacao)
+    if relacao is None:
+        raise HTTPException(status_code=404, detail="Relacao not found")
+    return relacao

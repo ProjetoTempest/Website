@@ -102,11 +102,14 @@ def get_relacao_product_user(db: Session):
     relacao_Product_User = db.exec(query).all()
     return relacao_Product_User
 
+def get_relacao_product_user_id(db: Session, id: int):
+    query = select(schemas.IntermediariaUserProducts).where(schemas.IntermediariaUserProducts.id == id)
+    relacao_Product_User = db.exec(query).first()
+    return relacao_Product_User
+
 def get_products_by_user(db: Session, user_id: int):
     query = select(schemas.Products).join(schemas.IntermediariaUserProducts, schemas.Products.id == schemas.IntermediariaUserProducts.products_id).where(schemas.IntermediariaUserProducts.user_id == user_id)
-
     relacao_Product_User = db.exec(query).all()
-
     return relacao_Product_User
     
 
@@ -115,3 +118,4 @@ def get_user_by_product(db: Session, product_id: int):
 
     relacao_Product_User = db.exec(query).all()
     return relacao_Product_User
+
