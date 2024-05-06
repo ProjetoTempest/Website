@@ -98,14 +98,12 @@ def create_link_product_user(db: Session, product_id: int, user_id: int):
     return db_product_user
 
 def get_products_by_user(db: Session, user_id: int):
-    query = select(schemas.IntermediariaUserProducts).where(schemas.IntermediariaUserProducts.user_id == user_id)
+    query = select(schemas.Products).join(schemas.IntermediariaUserProducts, schemas.Products.id == schemas.IntermediariaUserProducts.products_id).where(schemas.IntermediariaUserProducts.user_id == user_id)
+
     relacao_Product_User = db.exec(query).all()
 
-    product_db = []
-    for product in relacao_Product_User:
-        query = select(schemas.Products).where(schemas.Products.id == product.products_id)
-        product_db.append(db.exec(query).first())
-    return product_db
+    return relacao_Product_User
+    
 
 def get_user_by_product(db: Session, product_id: int):
     query = select(schemas.User).join(schemas.IntermediariaUserProducts, schemas.User.id == schemas.IntermediariaUserProducts.user_id).where(schemas.IntermediariaUserProducts.products_id == product_id)
