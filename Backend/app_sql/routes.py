@@ -135,6 +135,13 @@ def update_userid_link_product(id_relacao:int, user_id:int, db: Session = Depend
         raise HTTPException(status_code=404, detail="Relacao not found")
     return relacao
 
+@routerProduct.put("/update_produtid_link_user/{id_relacao}/{produt_id}", response_model=schemas.IntermediariaUserProducts)
+def update_produtid_link_user(id_relacao:int, produt_id:int, db: Session = Depends(get_db)):
+    relacao = crud.update_produtid_link_user(db=db, id_relacao=id_relacao, id_produt=produt_id)
+    if relacao is None:
+        raise HTTPException(status_code=404, detail="Relacao not found")
+    return relacao
+
 @routerProduct.delete("/delete_link_product_user/{id_relacao}", response_model=schemas.IntermediariaUserProducts)
 def delete_link_product_user(id_relacao: int, db: Session = Depends(get_db)):
     relacao = crud.delete_link_product_user(db=db, id=id_relacao)
