@@ -95,6 +95,11 @@ def create_link_product_user(product_id: int, user_id: int, db: Session = Depend
     crud.create_link_product_user(db=db, product_id=product_id, user_id=user_id)
     return {"message": "Link created successfully"}
 
+@routerProduct.get("/get_relacao_product_user", response_model=list[schemas.IntermediariaUserProducts])
+def get_relacao_product_user(db: Session = Depends(get_db)):
+    relacao = crud.get_relacao_product_user(db=db)
+    return relacao
+
 @routerProduct.get("/get_products_by_user/{user_id}", response_model=list[schemas.Products])
 def get_products_user(user_id: int, db: Session = Depends(get_db)):
     user = crud.get_user(db=db, user_id=user_id)

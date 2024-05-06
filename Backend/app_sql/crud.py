@@ -97,6 +97,11 @@ def create_link_product_user(db: Session, product_id: int, user_id: int):
 
     return db_product_user
 
+def get_relacao_product_user(db: Session):
+    query = select(schemas.IntermediariaUserProducts)
+    relacao_Product_User = db.exec(query)
+    return relacao_Product_User
+
 def get_products_by_user(db: Session, user_id: int):
     query = select(schemas.Products).join(schemas.IntermediariaUserProducts, schemas.Products.id == schemas.IntermediariaUserProducts.products_id).where(schemas.IntermediariaUserProducts.user_id == user_id)
 
