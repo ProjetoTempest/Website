@@ -25,14 +25,7 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_user(db: Session, user: schemas.User):
-
     db_user = schemas.User(name=user.name, email=user.email, cargotes=user.cargotes, photo=user.photo, description=user.description, password=user.password)
-    # user = str(user.model_dump()).replace("{", "").replace("}", "")
-    # print("#############################################1")
-    # # print()
-    # print(user)
-    # print("#############################################2")
-    # db_user = schemas.User(user)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
@@ -74,6 +67,13 @@ def get_products(db: Session):
     query = select(schemas.Products)
     products_db = db.exec(query)
     return products_db
+
+def get_product(db: Session, product_id: int):
+    query = select(schemas.Products).where(schemas.Products.id == product_id)
+    product_db = db.exec(query).first()
+    return product_db
+
+
 
 # def get_items(db: Session, skip: int = 0, limit: int = 100):
 #     return db.query(models.Item).offset(skip).limit(limit).all()
