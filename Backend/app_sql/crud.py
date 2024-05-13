@@ -8,7 +8,6 @@ def get_user(db: Session, user_id: int):
     user_db = db.exec(query).first()
     return user_db
 
-
 def get_user_by_email(db: Session, email: str):
     query = select(schemas.User).where(schemas.User.email == email)
     return db.exec(query).first()
@@ -154,3 +153,12 @@ def delete_link_product_user(db: Session, id: int):
         db.commit()
 
     return relacao_exist
+
+
+def create_service(db: Session, service: schemas.Service):
+    db_service = schemas.Service(title=service.title, description=service.description, value=service.value)
+    
+    db.add(db_service)
+    db.commit()
+    db.refresh(db_service)
+    return db_service

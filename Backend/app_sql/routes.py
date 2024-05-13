@@ -8,6 +8,7 @@ from . import schemas, crud
 
 routerUser = APIRouter(prefix="/users")
 routerProduct = APIRouter(prefix="/products")
+routerService = APIRouter(prefix="/service")
 
 @routerUser.post("/", response_model=schemas.UserBase)
 def create_user(user: schemas.User, db: Session = Depends(get_db)):
@@ -148,3 +149,12 @@ def delete_link_product_user(id_relacao: int, db: Session = Depends(get_db)):
     if relacao is None:
         raise HTTPException(status_code=404, detail="Relacao not found")
     return relacao
+
+
+
+# ##############################################
+
+
+@routerService.post("/", response_model=schemas.Service)
+def create_service(service: schemas.Service, db: Session = Depends(get_db)):
+    return crud.create_service(db=db, service=service)
