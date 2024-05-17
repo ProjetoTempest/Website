@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
         currentIndex -= step; // Pula para trás pelo número de cards visíveis
       }
     }
-    if (window.innerWidth < 860) {
+    else if (window.innerWidth < 860) {
       visibleCards = updateVisible2Cards(); // Atualiza os cards visíveis
       let step = (visibleCards + 0.1);
       if (direction === 'nextP' && currentIndex < Math.floor((carrosselContainer.scrollWidth - carrosselContainer.clientWidth) / cardWidth)) {
@@ -159,6 +159,14 @@ document.addEventListener("DOMContentLoaded", function () {
       } else if (direction === 'prevP' && currentIndex > 0) {
         currentIndex -= step; // Pula para trás pelo número de cards visíveis
       }
+    } else {
+      visibleCards = updateVisibleCards(); // Atualiza os cards visíveis
+      let step = visibleCards;
+      if (direction === 'nextP' && currentIndex < Math.floor((carrosselContainer.scrollWidth - carrosselContainer.clientWidth) / cardWidth)) {
+        currentIndex += step; // Pula pelo número de cards visíveis
+      } else if (direction === 'prevP' && currentIndex > 0) {
+        currentIndex -= step; // Pula para trás pelo número de cards visíveis
+      } 
     }
 
     // Move o carrossel para a posição correta

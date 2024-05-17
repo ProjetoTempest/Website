@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/adm.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>Administrador</title>
+</head>
+<body>
+  <div class="menuA">
+    <nav>
+      <a href="../../index.html"><i class="fas fa-home"></i></a>
+    </nav>
+  </div>
+  <section class="profile-section">
+    <div class="profile-picture">
+      <img src="../../pictures/profile.png" alt="Foto do Administrador">
+      <h2 class="profile-name">Administrador</h2>
+    </div>
+    <div class="filter">
+        <label for="filtro">Filtrar por:</label>
+        <select id="filtro">
+          <option value="nome">Nome</option>
+          <option value="cargo">Cargo</option>
+        </select>
+    </div>
+  </section>
+  <section class="membros">
+    <button class="adicionarBtn"><a href="cadastro.html"><i class="fas fa-user-plus"></i> Adicionar Membro </a></button>
+    <button class="editarBtn"><i class="fas fa-user-edit"></i> Editar Membro</button>
+    <button class="excluirBtn"><i class="fas fa-user-minus"></i> Excluir Membro</button>
+    <button class="confirmarBtn" style="display: none;"><i class="fas fa-check"></i> Confirmar Edição</button>
+  </section>
+  <section class="tabela">
+    <table id="membrosTable">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Login</th>
+          <th>Senha</th>
+          <th>Cargo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Mauricio Beijamin</td>
+          <td>Login1</td>
+          <td>Senha1</td>
+          <td>Admin</td>
+        </tr>
+        <tr>
+          <td>Luis Eduardo</td>
+          <td>Login2</td>
+          <td>Senha2</td>
+          <td>Front-End</td>
+        </tr>
+        <tr>
+          <td>Willians</td>
+          <td>Login3</td>
+          <td>Senha3</td>
+          <td>Back-End</td>
+        </tr>
+        <tr>
+          <td>Hermerson</td>
+          <td>Login4</td>
+          <td>Senha4</td>
+          <td>Design</td>
+        </tr>
+        <tr>
+          <td>Eduardo de Sousa</td>
+          <td>Login5</td>
+          <td>Senha5</td>
+          <td>Front-End</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"></td> 
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+  <section class="produtos">
+    <button class="adicionarBtnP"><i class="fas fa-plus-circle"></i> Adicionar Produto</button>
+    <button class="editarBtnP"><i class="fas fa-edit"></i> Editar Produto</button>
+    <button class="excluirBtnP"><i class="fas fa-trash-alt"></i> Excluir Produto</button>
+    <button class="confirmarBtnP" style="display: none;"><i class="fas fa-check"></i> Confirmar Edição</button>
+  </section>
+  <section class="tabela-produto">
+    <table id="productTable">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Valor</th>
+          <th>Imagem</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ECM</td>
+          <td>Software para gerenciar restaurantes</td>
+          <td>50.000,00</td>
+          <td>img.jpeg</td>
+        </tr>
+        <tr>
+          <td>Aerolicita</td>
+          <td>Software para gerenciar passagens áereas</td>
+          <td>25.000,00</td>
+          <td>img.jpeg</td>
+        </tr>
+        <tr>
+          <td>Padaria</td>
+          <td>Software para uma padaria</td>
+          <td>10.000,00</td>
+          <td>img.jpeg</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"></td> 
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+  <script src="../js/adm.js"></script>
+</body>
+</html>

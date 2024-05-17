@@ -52,17 +52,17 @@ footer p {
   z-index: 1000;
 }
 
-.menu ul {
+.menul ul {
   list-style: none;
   display: flex; 
   justify-content: center; 
 }
 
-.menu li {
+.menul li {
   margin: 0 10px;
 }
 
-.menu a {
+.menul a {
   display: block;
   color: white;
   padding: 10px; 
@@ -70,7 +70,7 @@ footer p {
   transition: all 300ms ease-in-out;
 }
 
-.menu a:hover {
+.menul a:hover {
   background-color: white;
   color: #000000;
 }
@@ -97,6 +97,11 @@ footer p {
 
 .menu-icon {
   display: none;
+}
+
+.icon-right a {
+  text-decoration: none;
+  color: inherit; 
 }
 
 /* Estilo para a página Home */
