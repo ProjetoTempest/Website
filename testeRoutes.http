@@ -1,0 +1,18 @@
+GET http://127.0.0.1:8000/users/3
+Content-Type: application/json
+
+###
+
+GET http://127.0.0.1:8000/users/login/email/123
+Content-Type: application/json
+
+###
+POST http://127.0.0.1:8000/products/create_link_product_user/{1}/{1}
+Content-Type: application/json
+
+###
+GET http://127.0.0.1:8000/products/get_relacao_product_user/
+
+###
+DELETE http://127.0.0.1:8000/products/delete_link_product_user/{4}
+Content-Type: application/json

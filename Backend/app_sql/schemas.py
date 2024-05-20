@@ -1,6 +1,6 @@
 from sqlmodel import Field, SQLModel, Relationship, create_engine, Session, select, String
 from typing import List, Optional
-from .database import session
+# from .database import session
 
 class CargoBase(SQLModel):
     name: str
@@ -32,6 +32,13 @@ class ImagesProducts(SQLModel, table=True):
     products_id: int = Field(foreign_key="products.id")
     products: Optional[Products] = Relationship(back_populates="images")
 
+
+class IntermediariaUserServices(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    user_id: int = Field(foreign_key="user.id")
+    service_id: int = Field(foreign_key="service.id")
+
+
 class ServiceBase(SQLModel):
     title: str
     description: Optional[str] = None
@@ -50,14 +57,14 @@ class ImagesService(SQLModel, table=True):
 class UserBase(SQLModel):
     name: str
     email: str
-    cargotes: int
+    cargo_id: int
     photo: Optional[str] = None
     description: Optional[str] = None 
 
 class User(UserBase, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     password: str
-    cargotes: int = Field(foreign_key='cargo.id')
+    cargo_id: int = Field(foreign_key='cargo.id')
 
 
 class TecnologiaBase(SQLModel):
@@ -87,7 +94,7 @@ class RedesSociais(RedesSociaisBase, table=True):
 class UserRedesSociais(SQLModel, table=True):    
     id: Optional[int] = Field(default=None, primary_key=True)
     user_id: int = Field(foreign_key="user.id")
-    redes_sociais_id: int = Field(foreign_key="redes_sociais.id")
+    redes_sociais_id: int = Field(foreign_key="redessociais.id")
 
 
 # sqlite_file_name = "database.db"
@@ -100,7 +107,7 @@ class UserRedesSociais(SQLModel, table=True):
 # # session = Session(engine)
 
 # # cargo1 = Cargo(name="Administrador", description="Acesso total ao sistema")
-# # user1 = User(name="Administrador", email="email", photo="fto", description='despro', password="123", cargotes=1)
+# # user1 = User(name="Administrador", email="email", photo="fto", description='despro', password="123", cargo_id=1)
 
 # # session.add(user1)
 # # session.add(cargo1)
@@ -117,23 +124,23 @@ class UserRedesSociais(SQLModel, table=True):
 
 #     user_data = results.__fields__
 #     user_data = dict(user_data)
-#     user_data.pop('cargotes')
+#     user_data.pop('cargo_id')
 #     user_data.pop("password")
 
 #     # a = UserBase(**user_data)
 #     # print(a)
 #     print(user_data)
 
-if __name__ == "__main__":
-    statement = select(User).where(User.id == 1)
-    results = session.exec(statement).first()
-    # print(results)
+# if __name__ == "__main__":
+#     statement = select(User).where(User.id == 1)
+#     results = session.exec(statement).first()
+#     # print(results)
 
-    user_data = results.__fields__
-    user_data = dict(user_data)
-    user_data.pop('cargotes')
-    user_data.pop("password")
+#     user_data = results.__fields__
+#     user_data = dict(user_data)
+#     user_data.pop('cargo_id')
+#     user_data.pop("password")
 
-    # a = UserBase(**user_data)
-    # print(a)
-    print(user_data)
+#     # a = UserBase(**user_data)
+#     # print(a)
+#     print(user_data)

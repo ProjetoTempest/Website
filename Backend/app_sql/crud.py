@@ -2,6 +2,8 @@
 from sqlmodel import Session, select, delete, update, join
 from . import schemas
 
+import json
+
 
 def get_user(db: Session, user_id: int):
     query = select(schemas.User).where(schemas.User.id == user_id)
@@ -22,9 +24,8 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
     users_db = db.exec(query)
     return users_db
 
-
-def create_user(db: Session, user: schemas.User):
-    db_user = schemas.User(name=user.name, email=user.email, cargotes=user.cargotes, photo=user.photo, description=user.description, password=user.password)
+def create_user(db: Session, user: json):
+    db_user = schemas.User(**user)
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
@@ -162,3 +163,100 @@ def create_service(db: Session, service: schemas.Service):
     db.commit()
     db.refresh(db_service)
     return db_service
+
+def get_services(db: Session):
+    query = select(schemas.Service)
+    services_db = db.exec(query)
+    return services_db
+
+def get_service(db: Session, service_id: int):
+    query = select(schemas.Service).where(schemas.Service.id == service_id)
+    service_db = db.exec(query).first()
+    return service_db
+
+def update_service(db: Session, service_id: int, service: schemas.Service):
+    query = update(schemas.Service).where(schemas.Service.id == service_id).values(title=service.title, description=service.description, value=service.value)
+    db.exec(query)
+    db.commit()
+    # return service_db
+
+def delete_service(db: Session, service_id: int):
+    service_db = get_service(db=db, service_id=service_id)
+
+    if service_db is not None:
+        query = delete(schemas.Service).where(schemas.Service.id == service_id)
+        db.exec(query)
+        db.commit()
+
+    return service_db
+
+
+
+
+
+
+def create_link_service_user(db: Session, service_id: int, user_id: int):
+    db_service_user = schemas.IntermediariaUserServices(user_id=user_id, service_id=service_id)
+    db.add(db_service_user)
+    db.commit()
+    db.refresh(db_service_user)
+
+    return db_service_user
+
+def update_userid_link_service(db: Session, id_relacao: int, id_user: int):
+    query = update(schemas.IntermediariaUserServices).where(schemas.IntermediariaUserServices.id == id_relacao).values(user_id=id_user)
+    db.exec(query)
+    db.commit()
+
+    query = select(schemas.IntermediariaUserServices).where(schemas.IntermediariaUserServices.id == id_relacao)
+    relacao_service_user = db.exec(query).first()
+
+    return relacao_service_user
+
+def update_serviceid_link_user(db: Session, id_relacao: int, id_service: int):
+    query = update(schemas.IntermediariaUserServices).where(schemas.IntermediariaUserServices.id == id_relacao).values(service_id=id_service)
+    db.exec(query)
+    db.commit()
+
+    query = select(schemas.IntermediariaUserServices).where(schemas.IntermediariaUserServices.id == id_relacao)
+    relacao_service_user = db.exec(query).first()
+
+    return relacao_service_user
+
+
+def get_relacao_service_user_create(db: Session, id_user: int, id_service: int):
+    query = select(schemas.IntermediariaUserServices).where(schemas.IntermediariaUserServices.user_id == id_user, schemas.IntermediariaUserServices.service_id == id_service)
+    relacao_service_user = db.exec(query).first()
+    return relacao_service_user
+
+def get_relacao_service_user(db: Session):
+    query = select(schemas.IntermediariaUserServices)
+    relacao_service_user = db.exec(query).all()
+    return relacao_service_user
+
+def get_relacao_service_user_id(db: Session, id: int):
+    query = select(schemas.IntermediariaUserServices).where(schemas.IntermediariaUserServices.id == id)
+    relacao_service_user = db.exec(query).first()
+    return relacao_service_user
+
+def get_services_by_user(db: Session, user_id: int):
+    query = select(schemas.Services).join(schemas.IntermediariaUserServices, schemas.Services.id == schemas.IntermediariaUserServices.service_id).where(schemas.IntermediariaUserServices.user_id == user_id)
+    relacao_service_user = db.exec(query).all()
+    return relacao_service_user
+    
+
+def get_user_by_service(db: Session, service_id: int):
+    query = select(schemas.User).join(schemas.IntermediariaUserServices, schemas.User.id == schemas.IntermediariaUserServices.user_id).where(schemas.IntermediariaUserServices.service_id == service_id)
+
+    relacao_service_user = db.exec(query).all()
+    return relacao_service_user
+
+def delete_link_service_user(db: Session, id: int):
+    relacao_exist = get_relacao_service_user_id(db=db, id=id)
+
+    if relacao_exist is not None:
+        query = delete(schemas.IntermediariaUserServices).where(schemas.IntermediariaUserServices.id == id)
+        db.exec(query)
+        db.commit()
+
+    return relacao_exist
