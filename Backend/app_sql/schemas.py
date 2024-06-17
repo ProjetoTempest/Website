@@ -21,16 +21,20 @@ class ProductsBase(SQLModel):
     description: Optional[str] = None
     value: float
 
-class Products(ProductsBase, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    images: Optional[List["ImagesProducts"]] = Relationship(back_populates="products")
 
 class ImagesProducts(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     title: str
     path: str
-    products_id: int = Field(foreign_key="products.id")
-    products: Optional[Products] = Relationship(back_populates="images")
+    products_id: Optional[int] = Field(default=None, foreign_key="products.id")
+    products: Optional["Products"] = Relationship(back_populates="images")
+
+class Products(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    title: str
+    description: str
+    value: float
+    images: List[ImagesProducts] = Relationship(back_populates="products")
 
 
 class IntermediariaUserServices(SQLModel, table=True):

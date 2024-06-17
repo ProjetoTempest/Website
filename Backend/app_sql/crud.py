@@ -25,6 +25,7 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
     return users_db
 
 def create_user(db: Session, user: json):
+    print("Crud")
     db_user = schemas.User(**user)
     db.add(db_user)
     db.commit()
@@ -55,18 +56,73 @@ def delete_user_by_email_password(db: Session, email: str, password: str):
     db.commit()
     return user_db
 
-def create_product(db: Session, product: schemas.Products):
-    db_product = schemas.Products(title=product.title, description=product.description, images=product.images, value=product.value)
-    
+
+
+ ############################### Products
+
+
+
+def create_product(db: Session, product: dict):
+    dicPro = {
+        "title": product["title"],
+        "description": product["description"],
+        "value": product["value"]
+    }
+
+    # Crie a instância do produto
+    db_product = schemas.Products(**dicPro)
     db.add(db_product)
     db.commit()
     db.refresh(db_product)
+
+    id_product = db_product.id
+
+    # Crie e adicione as instâncias de imagens associadas ao produto
+    list_imgs = []
+    for img in product["images"]:
+        img_schema = schemas.ImagesProducts(
+            title=img,
+            path=img,
+            products_id=id_product
+        )
+        db.add(img_schema)
+        list_imgs.append(img_schema)
+
+    db.commit()
+
+    # Atualize o produto com as imagens associadas
+    db_product.images = list_imgs
+    db.commit()
+    db.refresh(db_product)
+
     return db_product
 
+
+
+from sqlalchemy.orm import joinedload
+
+
 def get_products(db: Session):
-    query = select(schemas.Products)
-    products_db = db.exec(query)
+    query = (
+        select(schemas.Products)
+        .options(joinedload(schemas.Products.images))
+    )
+    products_db = db.exec(query).unique().all()
     return products_db
+
+# def get_products(db: Session):
+#     query = (
+#         select(schemas.Products)
+#         .options(joinedload(schemas.Products.images))
+#     )
+#     products_db = db.exec(query).all()
+
+#     return products_db
+
+# def get_products(db: Session):
+#     query = select(schemas.Products)
+#     products_db = db.exec(query)
+#     return products_db
 
 def get_product(db: Session, product_id: int):
     query = select(schemas.Products).where(schemas.Products.id == product_id)

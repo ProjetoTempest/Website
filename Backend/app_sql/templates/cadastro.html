@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../static/css/adm.css">
+  <link rel="stylesheet" href="../static/css/cadastro.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>Cadastro</title>
+</head>
+<body>
+  <div class="menuA">
+    <nav>
+      <a href="adm.html"><i class="fas fa-user-cog"></i></a>
+    </nav>
+  </div>
+  <section class="profile-section">
+    <div class="profile-picture">
+      <img src="../static/img/profile.png" alt="Foto do Administrador">
+      <h2 class="profile-name">Administrador</h2>
+    </div>
+  </section>
+  <section class="register-section">
+    <form id="registerForm" class="register-form">
+      <label for="name">Nome:</label>
+      <input type="text" id="name" name="name" required>
+      <label for="login">Login:</label>
+      <input type="text" id="login" name="login" required>
+      <label for="password">Senha:</label>
+      <div class="input-container">
+        <i class="far fa-eye-slash" id="togglePassword"></i>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <label for="role">Cargo:</label>
+      <input type="text" id="role" name="role" required>
+      <input type="submit" value="Cadastrar">
+    </form>
+    <div id="notification" class="notification"></div>
+  </section>
+  <script src="../static/js/cadastro.js"></script>
+</body>
+</html>

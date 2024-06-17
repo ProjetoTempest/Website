@@ -1,6 +1,6 @@
 from fastapi import APIRouter, UploadFile, File
 from fastapi import Depends, HTTPException
-from typing import Annotated
+from typing import Annotated, List
 
 from fastapi.responses import FileResponse
 from pathlib import Path
@@ -16,56 +16,121 @@ import json
 from .database import get_db
 from sqlmodel import Session
 
-from . import schemas, crud, hash_password
+from . import schemas, crud #hash_password
 
 routerUser = APIRouter(prefix="/users")
 routerProduct = APIRouter(prefix="/products")
 routerService = APIRouter(prefix="/service")
 
+# imageas bit
 
-
-
-def safe_file_to_server(uploaded_file, name_image):
+def safe_file_to_server(uploaded_file, name_user):
     path = "/home/will/Documentos/project_tempest/Website/Backend/imagens/"
     if not os.path.exists(path):
         os.makedirs(path)
 
     extension = os.path.splitext(uploaded_file.filename) [-1]
-    temp_file_name = os.path.join(path, name_image + extension)
+    temp_file_name = os.path.join(path, name_user + extension)
 
     with open(temp_file_name, "wb") as buffer:
         shutil.copyfileobj (uploaded_file.file, buffer)
     return temp_file_name
 
-@routerUser.post("/", response_model=schemas.UserBase)
-def create_user(
-    name: Annotated[str, Form()],  # Recebendo o JSON como string
-    email: Annotated[str, Form()],
-    cargo_id: Annotated[int, Form()],
-    description: Annotated[str, Form()],
-    password: Annotated[str, Form()],
-    file: Annotated[UploadFile, File(description="A file read as UploadFile")], 
+
+from sqlmodel import SQLModel 
+
+class UserBase(SQLModel):
+    name: str
+    login: str
+    password: str
+    role: str
+
+
+@routerUser.post("/", response_model= UserBase)
+async def create_user(
+    user: UserBase,
     db: Session = Depends(get_db)
 ):
+    
+    print(user)
 
-    user_dict = {
-        "name": name,
-        "email": email,
-        "cargo_id": cargo_id,
-        "description": description,
-        "password": password,
-    }
-
-    db_user = crud.get_user_by_email(db, email=user_dict["email"])
+    db_user = crud.get_user_by_email(db, email=user.login)
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
-    
-    path_save_image = safe_file_to_server(file, name_image=user_dict["name"] + "_profile")
 
-    user_dict["password"] = hash_password.gerar_hash(user_dict["password"])
-    user_dict["photo"] = path_save_image
+    user_dict = dict(user)
+
+    user_dict["email"] = user_dict.pop('login')
+    user_dict["cargo_id"] = user_dict.pop('role')
+    user_dict["photo"] = ""
+    user_dict["description"] = ""
     
-    return crud.create_user(db=db, user=user_dict)
+
+    print("Passou aqui")
+    # return user
+
+    user_return = crud.create_user(db=db, user=user_dict) 
+
+    user_return = dict(user_return)
+
+    user_return['login'] = user_return.pop("email")
+    user_return['role'] = user_return.pop("cargo_id")
+
+    return  user_return
+    # return crud.create_user(db=db, user=user_dict)  
+
+    
+
+    # user_dict = {
+    #     "name": name,
+    #     "email": email,
+    #     "cargo_id": cargo_id,
+    #     "description": description,
+    #     "password": password,
+    # }
+
+    # db_user = crud.get_user_by_email(db, email=user_dict["email"])
+    # if db_user:
+    #     raise HTTPException(status_code=400, detail="Email already registered")
+    
+    # # path_save_image = safe_file_to_server(file, name_image=user_dict["name"] + "_profile")
+
+    # # user_dict["password"] = hash_password.gerar_hash(user_dict["password"])
+    # user_dict["photo"] = path_save_image
+    
+    # return crud.create_user(db=db, user=user_dict)
+
+# @routerUser.post("/", response_model=schemas.UserBase)
+# async def create_user(
+#     name: Annotated[str, Form()],  # Recebendo o JSON como string
+#     email: Annotated[str, Form()],
+#     cargo_id: Annotated[int, Form()],
+#     description: Annotated[str, Form()],
+#     password: Annotated[str, Form()],
+#     file: Annotated[UploadFile, File(description="A file read as UploadFile")], 
+#     db: Session = Depends(get_db)
+# ):
+
+#     print("Entrou na req")
+
+#     user_dict = {
+#         "name": name,
+#         "email": email,
+#         "cargo_id": cargo_id,
+#         "description": description,
+#         "password": password,
+#     }
+
+#     db_user = crud.get_user_by_email(db, email=user_dict["email"])
+#     if db_user:
+#         raise HTTPException(status_code=400, detail="Email already registered")
+    
+#     path_save_image = safe_file_to_server(file, name_image=user_dict["name"] + "_profile")
+
+#     # user_dict["password"] = hash_password.gerar_hash(user_dict["password"])
+#     user_dict["photo"] = path_save_image
+    
+#     return crud.create_user(db=db, user=user_dict)
 
 
 @routerUser.get("/{user_id}", response_model=schemas.UserBase)
@@ -110,15 +175,75 @@ def delete_user(email:str, password:str, db:Session = Depends(get_db)):
 
 # ##############################################
 
+async def save_images(images: list[UploadFile], product: str):
 
-@routerProduct.post("/", response_model=schemas.Products)
-def create_product(product: schemas.Products, db: Session = Depends(get_db)):
-    return crud.create_product(db=db, product=product)
+    path = "/home/will/Documentos/project_tempest/Website/Backend/imagens/"
+    if not os.path.exists(path):
+        os.makedirs(path)
+
+    listPath = []
+    for img in images:
+        extension = os.path.splitext(img.filename) [-1]
+        temp_file_name = os.path.join(path, product + img.filename)
+
+
+        listPath.append(temp_file_name)
+        with open(temp_file_name, "wb") as buffer:
+            shutil.copyfileobj (img.file, buffer)
+
+    return listPath
+
+
+
+
+# @routerProduct.post("/")  #response_model=schemas.Products
+# async def create_product(product: schemas.Products,  db: Session = Depends(get_db)):
+
+
+
+#     # product_dict = {
+#     #     "title": title,
+#     #     "description": description,
+#     #     "value": value,
+#     #     "images": images,
+#     # }
+#     # await save_images(images, title)
+    
+#     print(product)
+#     return crud.create_product(db=db, product=product)
+
+
+@routerProduct.post("/")  #response_model=schemas.Products
+async def create_product(title: Annotated[str, Form()], description: Annotated[str, Form()], value: Annotated[float, Form()], images: Annotated[List[UploadFile], File(description="Multiple files as UploadFile")], db: Session = Depends(get_db)):
+
+
+
+    product_dict = {
+        "title": title,
+        "description": description,
+        "value": value,
+        "images": images,
+    }
+
+    
+    saved_image_urls = await save_images(images, title)
+    product_dict['images'] = saved_image_urls
+
+    a = crud.create_product(db=db, product=product_dict)
+
+    print(a)
+
+    return a
+
+
+
+
 
 @routerProduct.get("/", response_model=list[schemas.Products])
 def read_products(db: Session = Depends(get_db)):
     products = crud.get_products(db)
     return products
+
 
 @routerProduct.get("/{product_id}", response_model=schemas.Products)
 def read_product(product_id: int, db: Session = Depends(get_db)):
