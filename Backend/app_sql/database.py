@@ -1,16 +1,21 @@
-from sqlmodel import SQLModel, create_engine, Session
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-sqlite_file_name = "database.db"
-sqlite_url = f"sqlite:///{sqlite_file_name}"
+SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
+# SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 
-engine = create_engine(sqlite_url)
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+)
 
-SQLModel.metadata.create_all(engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-session = Session(engine)
-    
+Base = declarative_base()
+
 def get_db():
-    db = session
+    db = SessionLocal()
     try:
         yield db
     finally:

@@ -3,15 +3,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const passwordInput = document.getElementById('password');
     const registerForm = document.getElementById('registerForm');
     const notification = document.getElementById('notification');
-    console.log("Passou aqui")
-    console.log(document.getElementById('registerForm'))
+    const tbody = document.querySelector('tbody');
+
+    console.log("Passou aqui");
+    console.log(document.getElementById('registerForm'));
+
     if (togglePassword && passwordInput) {
-        console.log("Passou aqui a")
-        
+        console.log("Passou aqui a");
+
         togglePassword.addEventListener('click', () => {
             const type = passwordInput.type === 'password' ? 'text' : 'password';
             passwordInput.type = type;
-    
+
             if (type === 'password') {
                 togglePassword.classList.add('fa-eye-slash');
                 togglePassword.classList.remove('fa-eye');
@@ -21,26 +24,26 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-  
-    console.log(registerForm)
-    if (registerForm) { // erro
+
+    console.log(registerForm);
+    if (registerForm) {
         registerForm.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            console.log("Paasou be")
-    
+            console.log("Passou aqui b");
+
             const name = document.getElementById('name').value;
-            const login = document.getElementById('login').value;
+            const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            const role = document.getElementById('role').value;
-            console.log("String aqui3")
-    
-            if (name && login && password && role) {
-                const data = { name, login, password, role };
-    
-                console.log("String aqui2")
+            const role_id = document.getElementById('role_id').value;
+            console.log("String aqui3");
+
+            if (name && email && password && role_id) {
+                const data = { name, email, password, role_id };
+
+                console.log("String aqui2");
                 try {
-                    console.log("String aqui")
+                    console.log("String aqui");
                     const response = await fetch('http://127.0.0.1:8000/users/', {
                         method: 'POST',
                         headers: {
@@ -49,12 +52,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         },
                         body: JSON.stringify(data)
                     });
-    
+
                     if (response.ok) {
                         // const result = await response.json();
                         // showNotification(result.message, 'notification success show');
                         showNotification('Membro cadastrado com sucesso!', 'notification success show');
-                        console.log("Ok")
+                        console.log("Ok");
                         registerForm.reset();
                     } else {
                         const errorResult = await response.json();
@@ -69,14 +72,71 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-  
+
     function showNotification(message, type) {
         notification.textContent = message;
         notification.className = 'notification ' + type;
         notification.style.display = 'block';
-    
+
         setTimeout(() => {
             notification.style.display = 'none';
         }, 5000);
+    }
+
+    // Função para adicionar um membro à tabela
+    function addMemberToTable(member) {
+        const { name, login, password, role } = member;
+        const newRow = document.createElement('tr');
+        newRow.innerHTML = `
+        <td>${name}</td>
+        <td>${login}</td>
+        <td>${password}</td>
+        <td>${role}</td>
+        `;
+        tbody.appendChild(newRow);
+    }
+
+    // Carrega os membros do banco de dados ao carregar a página
+    loadMembers();
+
+    async function loadMembers() {
+        tbody.innerHTML = ''; // Limpa a tabela
+
+        try {
+        const response = await fetch('http://127.0.0.1:8000/users/'); // Ajuste a URL conforme necessário
+        const members = await response.json();
+
+        members.forEach(member => {
+            addMemberToTable(member);
+        });
+        } catch (error) {
+        showNotification('Erro ao carregar membros', 'notification error show');
+        }
+    }
+
+    if (tbody) {
+        tbody.addEventListener('click', async (e) => {
+            if (e.target.classList.contains('delete-btn')) {
+                const row = e.target.parentElement.parentElement;
+                const login = row.children[1].textContent; // Obtém o login do membro
+
+                try {
+                    const response = await fetch(`https://api.seuservidor.com/members/${login}`, { // Ajuste a URL conforme necessário
+                        method: 'DELETE'
+                    });
+
+                    if (response.ok) {
+                        // Remove da tabela
+                        row.remove();
+                        showNotification('Membro excluído com sucesso!', 'notification success show');
+                    } else {
+                        const result = await response.json();
+                        showNotification(result.message, 'notification error show');
+                    }
+                } catch (error) {
+                    showNotification('Erro ao excluir membro', 'notification error show');
+                }
+            }
+        });
     }
 });

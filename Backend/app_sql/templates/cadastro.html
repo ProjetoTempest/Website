@@ -24,19 +24,26 @@
     <form id="registerForm" class="register-form">
       <label for="name">Nome:</label>
       <input type="text" id="name" name="name" required>
-      <label for="login">Login:</label>
-      <input type="text" id="login" name="login" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
       <label for="password">Senha:</label>
       <div class="input-container">
         <i class="far fa-eye-slash" id="togglePassword"></i>
         <input type="password" id="password" name="password" required>
       </div>
-      <label for="role">Cargo:</label>
-      <input type="text" id="role" name="role" required>
+      <label for="role_id">Role ID:</label>
+      <input type="number" id="role_id" name="role_id" required>
       <input type="submit" value="Cadastrar">
     </form>
     <div id="notification" class="notification"></div>
   </section>
   <script src="../static/js/cadastro.js"></script>
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault(); 
+      console.log('Formulário enviado, redirecionando...');
+      window.location.href = 'adm.html';
+    });
+  </script>
 </body>
 </html>

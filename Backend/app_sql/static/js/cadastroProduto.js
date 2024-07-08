@@ -55,3 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 5000);
     }
   });
+
+  // document.getElementById('registerForm').addEventListener('submit', function(event) {
+  //   event.preventDefault(); 
+  //   console.log('Formulário enviado, redirecionando...');
+  //   window.location.href = 'adm.html';
+  // });

@@ -1,6 +1,6 @@
-# from sqlalchemy.orm import Session
-from sqlmodel import Session, select, delete, update, join
-from . import schemas
+from sqlalchemy.orm import Session
+from sqlmodel import select, delete, update, join
+from . import schemas, models
 
 import json
 
@@ -11,8 +11,9 @@ def get_user(db: Session, user_id: int):
     return user_db
 
 def get_user_by_email(db: Session, email: str):
-    query = select(schemas.User).where(schemas.User.email == email)
-    return db.exec(query).first()
+    # query = select(schemas.User).where(schemas.User.email == email)
+    # return db.exec(query).first()
+    return db.query(models.User).filter(models.User.email == email).first()
 
 def get_user_by_email_password(db: Session, email: str, password: str):
     query = select(schemas.User).where(schemas.User.email == email, schemas.User.password == password)
@@ -24,9 +25,21 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
     users_db = db.exec(query)
     return users_db
 
-def create_user(db: Session, user: json):
+# def create_user(db: Session, user: json):
+#     print("Crud")
+#     db_user = schemas.User(**user)
+#     db.add(db_user)
+#     db.commit()
+#     db.refresh(db_user)
+
+#     return db_user
+
+# from .routes import UserBase
+
+def create_user(db: Session, user: dict):
     print("Crud")
-    db_user = schemas.User(**user)
+    # user_dict = user.dict()
+    db_user = models.User(name=user.name, email=user.login, password=user.password, role_id = int(user.role))
     db.add(db_user)
     db.commit()
     db.refresh(db_user)

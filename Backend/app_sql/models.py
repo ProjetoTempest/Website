@@ -1,12 +1,10 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, Text
-from sqlalchemy.orm import relationship, declarative_base, Session, joinedload
-from sqlalchemy import create_engine, select
-from typing import List, Optional
+from sqlalchemy.orm import relationship
+from .database import Base
+# from app_sql.database import Base
 
-Base = declarative_base()
-
-class Cargo(Base):
-    __tablename__ = 'cargo'
+class Role(Base):
+    __tablename__ = 'role'
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     description = Column(String, nullable=True)
@@ -45,25 +43,26 @@ class Service(Base):
     title = Column(String, index=True)
     description = Column(Text, nullable=True)
     value = Column(Float)
-    # images = relationship("ImagesService", back_populates="service")
+    images = relationship("ImagesService", back_populates="service")
 
 class ImagesService(Base):
     __tablename__ = 'images_service'
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True)
     path = Column(String, index=True)
-    products_id = Column(Integer, ForeignKey('products.id'))
+    service_id = Column(Integer, ForeignKey('service.id'))
+    service = relationship("Service", back_populates="images")
 
 class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     email = Column(String, index=True)
-    cargo_id = Column(Integer, ForeignKey('cargo.id'))
+    role_id = Column(Integer, ForeignKey('role.id'))
     photo = Column(String, nullable=True)
     description = Column(Text, nullable=True)
     password = Column(String)
-    cargo = relationship("Cargo")
+    role = relationship("Role")
 
 class Tecnologia(Base):
     __tablename__ = 'tecnologia'
@@ -79,16 +78,16 @@ class UserTecnologia(Base):
     user_id = Column(Integer, ForeignKey('user.id'))
     tecnologia_id = Column(Integer, ForeignKey('tecnologia.id'))
 
-class RedesSociais(Base):
-    __tablename__ = 'redes_sociais'
+class SocialNetwork(Base):
+    __tablename__ = 'social_network'
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True)
     description = Column(Text, nullable=True)
     link = Column(String)
     icon = Column(String)
 
-class UserRedesSociais(Base):    
-    __tablename__ = 'user_redes_sociais'
+class UserSocialNetwork(Base):    
+    __tablename__ = 'user_social_network'
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey('user.id'))
-    redes_sociais_id = Column(Integer, ForeignKey('redes_sociais.id'))
+    social_network_id = Column(Integer, ForeignKey('social_network.id'))
