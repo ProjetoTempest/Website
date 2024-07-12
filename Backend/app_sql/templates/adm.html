@@ -51,7 +51,7 @@
           <th>Nome</th>
           <th>Login</th>
           <th>Senha</th>
-          <th>Cargo</th>
+          <th>Id membro</th>
         </tr>
       </thead>
       <tbody>
@@ -104,11 +104,11 @@
       </tfoot>
     </table>
   </section>
-  <section class="servicos">
+  <section class="servicos" id="Service-Table">
     <button class="adicionarBtnP">
       <a href="cadastroServico.html"><i class="fas fa-plus-circle"></i> Adicionar Serviço</a>
     </button>
-    <button class="editarBtnP">
+    <button class="editarBtnS">
       <i class="fas fa-edit"></i> Editar Serviço
     </button>
     <button class="excluirBtnS">
@@ -120,7 +120,7 @@
     <div id="cancelNotificationS" class="notification">
       Ação de exclusão cancelada!
     </div>
-    <button class="confirmarBtnP" style="display: none">
+    <button class="confirmarBtnS" style="display: none">
       <i class="fas fa-check"></i> Confirmar Edição
     </button>
   </section>
@@ -144,18 +144,6 @@
       </tfoot>
     </table>
   </section>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const menuLinks = document.querySelectorAll(".menu-link");
-      menuLinks.forEach((link) => {
-        link.addEventListener("click", function () {
-          menuLinks.forEach((link) => link.classList.remove("active"));
-          this.classList.add("active");
-        });
-      });
-    });
-  </script>
 
   <script src="../static/js/adm.js"></script>
 </body>

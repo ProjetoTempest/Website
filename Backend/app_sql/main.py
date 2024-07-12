@@ -18,7 +18,6 @@ from .routes.route_tecnologia import routerTecnologia
 from .routes.route_user_link_tecnologia import route_user_link_tec
 from .routes.route_role import route_role
 
-
 app = FastAPI()
 
 origins = [
