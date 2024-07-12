@@ -403,7 +403,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Edição produto
 
 document.addEventListener("DOMContentLoaded", function () {
-  const tabelaBody = document.querySelector("#Service-Table tbody");
+  const tabelaBody = document.querySelector("#productTable tbody");
   const editarBtn = document.querySelector(".editarBtnP");
   const confirmarBtn = document.querySelector(".confirmarBtnP");
   let editing = false; // Flag para indicar se a edição está habilitada
@@ -448,7 +448,7 @@ document.addEventListener("DOMContentLoaded", function () {
           };
 
           try {
-              const response = await fetch(`http://127.0.0.1:8000/services/update/${updatedProduct.id}`, { // Ajuste a URL conforme necessário
+              const response = await fetch(`http://127.0.0.1:8000/products/update/${updatedProduct.id}`, { // Ajuste a URL conforme necessário
                   method: 'PUT',
                   headers: {
                       'Content-Type': 'application/json'
