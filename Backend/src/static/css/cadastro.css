@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.profile-picture {
+  padding-top: 2rem;
+  margin: 0 auto;
+}
+
+.register-section {
+  width: 100%;
+  max-width: 50%;
+  margin: 0 auto;
+  padding: 1.3rem;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-form label {
+  margin-bottom: 0.2rem;
+}
+
+.register-form input[type="text"],
+.register-form input[type="email"],
+.register-form input[type="number"],
+.register-form input[type="password"] {
+  margin-bottom: 1.3rem;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.register-form input[type="submit"] {
+  margin: 0 auto;
+  background-color: #010570;
+  color: white;
+  padding: 0.8rem 4rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.register-form input[type="submit"]:hover {
+  background-color: #010570;
+}
+
+.input-container {
+  position: relative;
+  font-size: 1rem;
+}
+
+.input-container input {
+  min-width: 100%;
+}
+
+.input-container input[type="password"] {
+  width: 100%; 
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.input-container i {
+  cursor: pointer;
+  position: absolute;
+  right: 8px;
+  color: #0707f7;
+  font-size: 1.2em;
+  top: 20%;
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: white;
+  text-align: center;
+  display: none;
+  z-index: 1000;
+}
+
+.notification.success {
+  background-color: #4caf50;
+}
+
+.notification.error {
+  background-color: #f44336;
+}

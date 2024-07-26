@@ -1,0 +1,242 @@
+// document.addEventListener("DOMContentLoaded", function () {
+//   const tbody = document.querySelector("#membrosTable tbody");
+//   const excluirBtn = document.querySelector(".excluirBtn");
+//   const deleteNotification = document.getElementById('deleteNotification');
+//   const cancelNotification = document.getElementById('cancelNotification');
+
+//   if (excluirBtn && tbody) {
+//     tbody.addEventListener("click", function (event) {
+//       const target = event.target;
+//       if (target.tagName === "TD") {
+//         const row = target.closest("tr");
+//         const rows = tbody.querySelectorAll("tr");
+//         rows.forEach((row) => row.classList.remove("selected"));
+//         row.classList.add("selected");
+//       }
+//     });
+
+//     excluirBtn.addEventListener("click", async function () {
+//       const selectedRow = tbody.querySelector("tr.selected");
+//       if (selectedRow) {
+//         if (confirm("Tem certeza de que deseja excluir este membro?")) {
+//           const login = selectedRow.querySelector("td:nth-child(2)").textContent;
+//           const senha = selectedRow.querySelector("td:nth-child(3)").textContent;
+
+//           try {
+//             const response = await fetch(`http://127.0.0.1:8000/users/delete/${login}/${senha}`, {
+//               method: 'DELETE'
+//             });
+
+//             if (response.ok) {
+//               selectedRow.remove();
+//               showNotification('Membro excluído com sucesso!', 'success', deleteNotification);
+//             } else {
+//               const result = await response.json();
+//               showNotification(result.message, 'error', deleteNotification);
+//             }
+//           } catch (error) {
+//             showNotification('Erro ao excluir membro', 'error', deleteNotification);
+//           }
+//         } else {
+//           showNotification('Ação de exclusão cancelada!', 'error', cancelNotification);
+//         }
+//       } else {
+//         alert("Por favor, selecione um Membro para excluir.");
+//       }
+//     });
+//   } else {
+//     console.error("Elemento não encontrado.");
+//   }
+
+  // function showNotification(message, type, notificationElement) {
+  //   notificationElement.textContent = message;
+  //   notificationElement.className = 'notification ' + type + ' show';
+
+  //   setTimeout(() => {
+  //     notificationElement.className = 'notification';
+  //   }, 5000);
+  // }
+// });
+
+
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   const tbodyMembros = document.querySelector("#membrosTable tbody");
+//   const excluirBtnMembros = document.querySelector(".excluirBtn");
+//   const deleteNotification = document.getElementById('deleteNotification');
+//   const cancelNotification = document.getElementById('cancelNotification');
+
+//   const tbodyProdutos = document.querySelector("#productTable tbody");
+//   const excluirBtnProdutos = document.querySelector(".excluirBtnP");
+//   const deleteNotificationP = document.getElementById('deleteNotificationP');
+//   const cancelNotificationP = document.getElementById('cancelNotificationP');
+
+//   if (excluirBtnMembros && tbodyMembros) {
+//     tbodyMembros.addEventListener("click", function (event) {
+//       const target = event.target;
+//       if (target.tagName === "TD") {
+//         const row = target.closest("tr");
+//         const rows = tbodyMembros.querySelectorAll("tr");
+//         rows.forEach((row) => row.classList.remove("selected"));
+//         row.classList.add("selected");
+//       }
+//     });
+
+//     excluirBtnMembros.addEventListener("click", async function () {
+//       const selectedRow = tbodyMembros.querySelector("tr.selected");
+//       if (selectedRow) {
+//         if (confirm("Tem certeza de que deseja excluir este membro?")) {
+//           const login = selectedRow.querySelector("td:nth-child(2)").textContent;
+//           const senha = selectedRow.querySelector("td:nth-child(3)").textContent;
+
+//           try {
+//             const response = await fetch(`http://127.0.0.1:8000/users/delete/${login}/${senha}`, {
+//               method: 'DELETE'
+//             });
+
+//             if (response.ok) {
+//               selectedRow.remove();
+//               showNotification('Membro excluído com sucesso!', 'success', deleteNotification);
+//             } else {
+//               const result = await response.json();
+//               showNotification(result.message, 'error', deleteNotification);
+//             }
+//           } catch (error) {
+//             showNotification('Erro ao excluir membro', 'error', deleteNotification);
+//           }
+//         } else {
+//           showNotification('Ação de exclusão cancelada!', 'error', cancelNotification);
+//         }
+//       } else {
+//         alert("Por favor, selecione um Membro para excluir.");
+//       }
+//     });
+//   } else {
+//     console.error("Elemento não encontrado.");
+//   }
+
+//   if (excluirBtnProdutos && tbodyProdutos) {
+//     tbodyProdutos.addEventListener("click", function (event) {
+//       const target = event.target;
+//       if (target.tagName === "TD") {
+//         const row = target.closest("tr");
+//         const rows = tbodyProdutos.querySelectorAll("tr");
+//         rows.forEach((row) => row.classList.remove("selected"));
+//         row.classList.add("selected");
+//       }
+//     });
+
+//     excluirBtnProdutos.addEventListener("click", async function () {
+//       const selectedRow = tbodyProdutos.querySelector("tr.selected");
+//       if (selectedRow) {
+//         if (confirm("Tem certeza de que deseja excluir este produto?")) {
+//           const idProduto = selectedRow.querySelector("td:nth-child(4)").textContent;
+
+//           try {
+//             const response = await fetch(`http://127.0.0.1:8000/products/delete/${idProduto}`, {
+//               method: 'DELETE'
+//             });
+
+//             if (response.ok) {
+//               selectedRow.remove();
+//               showNotification('Produto excluído com sucesso!', 'success', deleteNotificationP);
+//             } else {
+//               const result = await response.json();
+//               showNotification(result.message, 'error', deleteNotificationP);
+//             }
+//           } catch (error) {
+//             showNotification('Erro ao excluir produto', 'error', deleteNotificationP);
+//           }
+//         } else {
+//           showNotification('Ação de exclusão cancelada!', 'error', cancelNotificationP);
+//         }
+//       } else {
+//         alert("Por favor, selecione um Produto para excluir.");
+//       }
+//     });
+//   } else {
+//     console.error("Elemento não encontrado.");
+//   }
+
+//   function showNotification(message, type, notificationElement) {
+//     notificationElement.textContent = message;
+//     notificationElement.className = 'notification ' + type + ' show';
+
+//     setTimeout(() => {
+//       notificationElement.className = 'notification';
+//     }, 5000);
+//   }
+// });
+
+
+
+
+
+// function setupDeleteHandler(tableSelector, endpoint) {
+//   const tbody = document.querySelector(tableSelector);
+
+//   const excluirBtn = endpoint === 'users' ? document.querySelector(".excluirBtn") : document.querySelector(".excluirBtnP");
+
+//   const deleteNotification = endpoint === 'users' ? document.getElementById('deleteNotification') : document.getElementById('deleteNotificationP');
+
+//   const cancelNotification = endpoint === 'users' ? document.getElementById('cancelNotification') : document.getElementById('cancelNotificationP');
+
+//   if (excluirBtn && tbody) {
+//     tbody.addEventListener("click", function (event) {
+//       const target = event.target;
+//       if (target.tagName === "TD") {
+//         const row = target.closest("tr");
+//         const rows = tbody.querySelectorAll("tr");
+//         rows.forEach((row) => row.classList.remove("selected"));
+//         row.classList.add("selected");
+//       }
+//     });
+
+//     excluirBtn.addEventListener("click", async function () {
+//       const selectedRow = tbody.querySelector("tr.selected");
+//       if (selectedRow) {
+//         if (confirm(`Tem certeza de que deseja excluir este ${endpoint === 'users' ? 'membro' : 'produto'}?`)) {
+//           const identifier = endpoint === 'users' ? selectedRow.querySelector("td:nth-child(2)").textContent : selectedRow.querySelector("td:nth-child(4)").textContent;
+
+//           try {
+//             if (endpoint === 'users') {
+//               const email = endpoint = selectedRow.querySelector("td:nth-child(2)");
+//               const senha = endpoint = selectedRow.querySelector("td:nth-child(3)");
+//               const response = await fetch(`http://127.0.0.1:8000/${endpoint}/delete/${email}/${senha}`, {
+//                 method: 'DELETE'
+//               });
+//               if (response.ok) {
+//                 selectedRow.remove();
+//                 showNotification(`${endpoint === 'users' ? 'Membro' : 'Produto'} excluído com sucesso!, 'success'`, deleteNotification);
+//               } else {
+//                 const result = await response.json();
+//                 showNotification(result.message, 'error', deleteNotification);
+//               }
+
+//             } else {
+//               const response = await fetch(`http://127.0.0.1:8000/${endpoint}/delete/${identifier}`, {
+//                 method: 'DELETE'
+//               });
+//               if (response.ok) {
+//                 selectedRow.remove();
+//                 showNotification(`${endpoint === 'users' ? 'Membro' : 'Produto'} excluído com sucesso!, 'success'`, deleteNotification);
+//               } else {
+//                 const result = await response.json();
+//                 showNotification(result.message, 'error', deleteNotification);
+//               }
+//             }
+//           } catch (error) {
+//             showNotification(`Erro ao excluir ${endpoint === 'users' ? 'membro' : 'produto'}, 'error'`, deleteNotification);
+//           }
+//         } else {
+//           showNotification('Ação de exclusão cancelada!', 'error', cancelNotification);
+//         }
+//       } else {
+//         alert(`Por favor, selecione um ${endpoint === 'users' ? 'membro' : 'produto'} para excluir.`);
+//       }
+//     });
+//   } else {
+//     console.error("Elemento não encontrado.");
+//   }
+// }
