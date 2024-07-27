@@ -4,7 +4,7 @@ from .. import schemas, models
 import json
 
 
-def create_product(db: Session, product: dict):
+def create_product(db: Session, product: schemas.ProductCreate):
     """
     Cria um novo produto no banco de dados com base nos dados fornecidos.
 
@@ -16,11 +16,22 @@ def create_product(db: Session, product: dict):
     Returns:
     - models.Products: O objeto do produto criado no banco de dados, incluindo as imagens associadas.
     """
-    dicPro = {
-        "title": product["title"],
-        "description": product["description"],
-        "value": product["value"]
-    }
+
+    db_product = models.Products(title=product.title, description=product.description, value=product.value)
+    db.add(db_product)
+    db.commit()
+    db.refresh(db_product)
+
+    list_imgs = [models.ImagesProducts(url=img_url.url, item_id=db_product.id) for img_url in product.images]
+
+    db.add_all(list_imgs)
+
+    db_product.images = list_imgs
+
+    db.commit()
+    db.refresh(db_product)
+
+    return db_product
 
     # Crie a instância do produto
     db_product = models.Products(**dicPro)

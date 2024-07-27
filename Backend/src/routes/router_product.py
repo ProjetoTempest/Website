@@ -41,8 +41,8 @@ async def save_images(images: list[UploadFile], product: str):
 
 
 
-@routerProduct.post("/")  #response_model=schemas.Products
-async def create_product(title: Annotated[str, Form()], description: Annotated[str, Form()], value: Annotated[float, Form()], images: Annotated[List[UploadFile], File(description="Multiple files as UploadFile")], db: Session = Depends(get_db)):
+@routerProduct.post("/", response_model=schemas.Product) 
+async def create_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
     """
     Rota para criar um novo produto no banco de dados.
 
@@ -56,18 +56,10 @@ async def create_product(title: Annotated[str, Form()], description: Annotated[s
     Returns:
     - models.Products: Objeto do produto criado no banco de dados.
     """
-    product_dict = {
-        "title": title,
-        "description": description,
-        "value": value,
-        "images": None,
-    }
 
-    
-    saved_image_urls = await save_images(images, title)
-    product_dict['images'] = saved_image_urls
+    return product_controller.create_product(db=db, product=product)
 
-    return product_controller.create_product(db=db, product=product_dict)
+
 
 
 @routerProduct.get("/")

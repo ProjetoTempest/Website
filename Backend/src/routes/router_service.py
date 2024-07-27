@@ -39,41 +39,41 @@ async def save_images(images: List[UploadFile], service: str):
     return saved_image_urls
 
 
-@routerService.post("/")
-async def create_service(
-    title: str = Form(...),
-    description: str = Form(...),
-    value: float = Form(...),
-    images: Optional[List[UploadFile]] = File(None),
-    db: Session = Depends(get_db)
-):
-    """
-    Rota para criar um novo serviço no banco de dados.
+# @routerService.post("/")
+# async def create_service(
+#     title: str = Form(...),
+#     description: str = Form(...),
+#     value: float = Form(...),
+#     images: Optional[List[UploadFile]] = File(None),
+#     db: Session = Depends(get_db)
+# ):
+#     """
+#     Rota para criar um novo serviço no banco de dados.
 
-    Args:
-    - title (str): Título do serviço.
-    - description (str): Descrição do serviço.
-    - value (float): Valor do serviço.
-    - images (List[UploadFile]): Lista de arquivos de imagem a serem associados ao serviço.
-    - db (Session): Sessão do banco de dados para executar a operação de criação.
+#     Args:
+#     - title (str): Título do serviço.
+#     - description (str): Descrição do serviço.
+#     - value (float): Valor do serviço.
+#     - images (List[UploadFile]): Lista de arquivos de imagem a serem associados ao serviço.
+#     - db (Session): Sessão do banco de dados para executar a operação de criação.
 
-    Returns:
-    - models.Services: Objeto do serviço criado no banco de dados.
-    """
-    service_dict = {
-        "title": title,
-        "description": description,
-        "value": value,
-        "images": None,
-    }
+#     Returns:
+#     - models.Services: Objeto do serviço criado no banco de dados.
+#     """
+#     service_dict = {
+#         "title": title,
+#         "description": description,
+#         "value": value,
+#         "images": None,
+#     }
 
-    if images:
-        saved_image_urls = await save_images(images, title)
-        service_dict['images'] = saved_image_urls
+#     if images:
+#         saved_image_urls = await save_images(images, title)
+#         service_dict['images'] = saved_image_urls
 
-    return service_controller.create_service(db=db, service=service_dict)
+#     return service_controller.create_service(db=db, service=service_dict)
 
-@routerService.post("/serv", response_model=schemas.ServiceResponse)
+@routerService.post("/", response_model=schemas.ServiceResponse)
 async def create_service( servico: schemas.ServiceCreate,
     db: Session = Depends(get_db)
 ):
@@ -89,6 +89,24 @@ async def create_service( servico: schemas.ServiceCreate,
 
     Returns:
     - models.Services: Objeto do serviço criado no banco de dados.
+
+    
+    Para testes
+    {
+        "title": "string11",
+        "description": "string",
+        "value": 0,
+        "images":[
+            {
+                "url": "a"
+            },
+            {
+                "url": "b"
+            }
+        ]
+    }
+
+
     """
     
     return service_controller.create_service(db=db, service=servico)
