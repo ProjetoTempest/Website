@@ -48,7 +48,7 @@ async def save(images: List[UploadFile], ident_img: str):
         temp_file_name = os.path.join(path, ident_img + images[0].filename)
         saved_path = await save_img_path(temp_file_name=temp_file_name, img=images[0])
         if saved_path:
-            return saved_path
+            return [{"url": saved_path}]
         else:
             return []
 
@@ -56,6 +56,6 @@ async def save(images: List[UploadFile], ident_img: str):
         temp_file_name = os.path.join(path, ident_img + img.filename)
         saved_path = await save_img_path(temp_file_name=temp_file_name, img=img)
         if saved_path:
-            saved_image_urls.append(saved_path)
+            saved_image_urls.append({"url": saved_path})
 
     return saved_image_urls

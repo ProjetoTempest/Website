@@ -8,28 +8,56 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
 
             if (confirm('Tem certeza de que deseja cadastrar este serviço?')) {
-                const name = document.getElementById('nameservice').value;
+                const title = document.getElementById('nameservice').value; // Alterado para 'title'
                 const description = document.getElementById('description').value;
-                const price = document.getElementById('price').value;
+                const value = document.getElementById('price').value; // Alterado para 'value'
+                const imageFiles = document.getElementById('image').files;
 
-                if (name && description && price) {
-                    const formData = new FormData();
-                    formData.append('title', name);
-                    formData.append('description', description);
-                    formData.append('value', price);
+                if (title && description && value && imageFiles.length > 0) {
+                    const formImg = new FormData();
+                    formImg.append('ident_img', title);
+
+                    for (let i = 0; i < imageFiles.length; i++) {
+                        formImg.append('imgs', imageFiles[i]);
+                    }
 
                     try {
+                        const responImg = await fetch(`http://127.0.0.1:8000/save_img/`, {
+                            method: 'POST',
+                            body: formImg
+                        });
+
+                        if (!responImg.ok) {
+                            const result = await responImg.json();
+                            showNotification(result.message || 'Erro ao enviar imagens', 'error');
+                            return;
+                        }
+
+                        const resultImg = await responImg.json();
+                        const images = resultImg.map(imageDict => ({ url: imageDict.url }));
+
+                        const serviceData = {
+                            "title": title,
+                            "description": description,
+                            "value": value,
+                            "images": images
+                        };
+
                         const response = await fetch('http://127.0.0.1:8000/services/', {
                             method: 'POST',
-                            body: formData
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(serviceData)
                         });
 
                         const result = await response.json();
+
                         if (response.ok) {
                             showNotification('Serviço cadastrado com sucesso', 'success');
                             registerForm.reset();
                         } else {
-                            showNotification(result.message, 'error');
+                            showNotification(result.message || 'Erro ao cadastrar serviço', 'error');
                         }
                     } catch (error) {
                         showNotification('Erro ao cadastrar serviço', 'error');
@@ -59,7 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Função para adicionar um serviço à tabela
     function addServiceToTable(service) {
         const { title, description, value } = service;
         const newRow = document.createElement('tr');
@@ -71,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
         tbody.appendChild(newRow);
     }
 
-    // Carrega os serviços do banco de dados ao carregar a página
     async function loadServices() {
         tbody.innerHTML = ''; // Limpa a tabela
 
@@ -83,37 +109,34 @@ document.addEventListener("DOMContentLoaded", function () {
                 addServiceToTable(service);
             });
         } catch (error) {
-            showNotification('Erro ao carregar serviços', 'notification error show');
+            showNotification('Erro ao carregar serviços', 'error');
         }
     }
 
     if (tbody) {
-        // Event listener para excluir serviços
         tbody.addEventListener('click', async (e) => {
             if (e.target.classList.contains('delete-btn')) {
                 const row = e.target.parentElement.parentElement;
                 const id = row.children[0].textContent; // Obtém o id do serviço, ajuste conforme necessário
 
                 try {
-                    const response = await fetch(`http://127.0.0.1:8000/services/${id}`, { // Ajuste a URL conforme necessário
+                    const response = await fetch(`http://127.0.0.1:8000/services/${id}`, {
                         method: 'DELETE'
                     });
 
                     if (response.ok) {
-                        // Remove da tabela
                         row.remove();
-                        showNotification('Serviço excluído com sucesso!', 'notification success show');
+                        showNotification('Serviço excluído com sucesso!', 'success');
                     } else {
                         const result = await response.json();
-                        showNotification(result.message, 'notification error show');
+                        showNotification(result.message || 'Erro ao excluir serviço', 'error');
                     }
                 } catch (error) {
-                    showNotification('Erro ao excluir serviço', 'notification error show');
+                    showNotification('Erro ao excluir serviço', 'error');
                 }
             }
         });
 
-        // Carrega os serviços ao carregar a página
         loadServices();
     } else {
         console.error('Elemento tbody não encontrado');

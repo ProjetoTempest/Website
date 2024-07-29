@@ -1,13 +1,14 @@
-from fastapi import UploadFile, APIRouter, File, HTTPException
+from fastapi import UploadFile, APIRouter, File, HTTPException, Form
 from typing import List, Optional
 
 from ..utils import save_images
 
 routeSaveImg = APIRouter(prefix="/save_img")
 
-@routeSaveImg.post("/")
 # def save_img(ident_img: str, imgs: Optional[List[UploadFile]] = File(None)):
-async def save_img(ident_img: str, imgs: List[UploadFile] = File()):
+@routeSaveImg.post("/")
+async def save_img(ident_img: str = Form(...), imgs: List[UploadFile] = File()):
+    print(imgs)
 
     valid_imgs = []
     for img in imgs:
