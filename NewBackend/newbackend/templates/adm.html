@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/css/adm.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <title>Administrador</title>
+</head>
+<body>
+  <div class="menuA">
+    <nav>
+      <a href="../../index.html"><i class="fas fa-home"></i></a>
+    </nav>
+  </div>
+  <section class="profile-section">
+    <div class="profile-picture">
+      <img src="../static/img/profile.png" alt="Foto do Administrador" />
+      <h2 class="profile-name">Administrador</h2>
+    </div>
+    <div class="filter">
+      <label for="filtro">Filtrar por:</label>
+      <select id="filtro">
+        <option value="nome">Nome</option>
+        <option value="cargo">Cargo</option>
+      </select>
+    </div>
+  </section>
+  <section class="membros">
+    <button class="adicionarBtn">
+      <a href="cadastro.html"><i class="fas fa-user-plus"></i> Adicionar Membro</a>
+    </button>
+    <button class="editarBtn">
+      <i class="fas fa-user-edit"></i> Editar Membro
+    </button>
+    <button class="excluirBtn">Excluir Membro</button>
+    <div id="deleteNotification" class="notification">
+      Membro excluído com sucesso!
+    </div>
+    <div id="cancelNotification" class="notification">
+      Ação de exclusão cancelada!
+    </div>
+    <button class="confirmarBtn" style="display: none">
+      <i class="fas fa-check"></i> Confirmar Edição
+    </button>
+  </section>
+  <section class="tabela">
+    <table id="membrosTable">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Login</th>
+          <th>Senha</th>
+          <th>Id membro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Os dados serão inseridos aqui -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+  <section class="produtos">
+    <button class="adicionarBtnP">
+      <a href="cadastroProduto.html"><i class="fas fa-plus-circle"></i> Adicionar Produto</a>
+    </button>
+    <button class="editarBtnP">
+      <i class="fas fa-edit"></i> Editar Produto
+    </button>
+    <button class="excluirBtnP">
+      <i class="fas fa-trash-alt"></i> Excluir Produto
+    </button>
+    <div id="deleteNotificationP" class="notification">
+      Produto excluído com sucesso!
+    </div>
+    <div id="cancelNotificationP" class="notification">
+      Ação de exclusão cancelada!
+    </div>
+    <button class="confirmarBtnP" style="display: none">
+      <i class="fas fa-check"></i> Confirmar Edição
+    </button>
+  </section>
+  <section id="tabela-produto" class="tabela-produto">
+    <table id="productTable">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Valor</th>
+          <th>Id Produto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Os dados serão inseridos aqui -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+  <section class="servicos" id="Service-Table">
+    <button class="adicionarBtnP">
+      <a href="cadastroServico.html"><i class="fas fa-plus-circle"></i> Adicionar Serviço</a>
+    </button>
+    <button class="editarBtnS">
+      <i class="fas fa-edit"></i> Editar Serviço
+    </button>
+    <button class="excluirBtnS">
+      <i class="fas fa-trash-alt"></i> Excluir Serviço
+    </button>
+    <div id="deleteNotificationS" class="notification">
+      Serviço excluído com sucesso!
+    </div>
+    <div id="cancelNotificationS" class="notification">
+      Ação de exclusão cancelada!
+    </div>
+    <button class="confirmarBtnS" style="display: none">
+      <i class="fas fa-check"></i> Confirmar Edição
+    </button>
+  </section>
+  <section id="tabela-servico" class="tabela-produto">
+    <table id="serviceTable">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Valor</th>
+          <th>Id Serviço</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Os dados serão inseridos aqui -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+
+  <script src="../static/js/adm.js"></script>
+</body>
+</html>

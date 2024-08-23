@@ -1,0 +1,67 @@
+.register-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .register-form label {
+    margin-bottom: 5px;
+  }
+  
+  .register-form textarea {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-bottom: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .register-form input[type="file"],
+  .register-form input[type="number"] {
+    margin-bottom: 1rem;
+  }
+  
+  .register-form input[type="number"] {
+    padding: 0.6rem;
+  }
+  
+  .register-form input[type="file"] {
+    padding: 3px;
+  }
+  
+  .register-form input[type="submit"] {
+    margin: 0 auto;
+    background-color: #010570;
+    color: white;
+    padding: 0.8rem 4rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .notification {
+    position: fixed;
+    top: 3.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem 3rem;
+    border-radius: 0.5rem;
+    color: white;
+    text-align: center;
+    display: none;
+    z-index: 1000;
+  }
+  
+  .notification.show {
+    display: block;
+  }
+  
+  .notification.success {
+    background-color: #4caf50;
+  }
+  
+  .notification.error {
+    background-color: #f44336;
+  }
