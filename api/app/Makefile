@@ -1,0 +1,8 @@
+run:
+	@uvicorn Backend.src.main:app --reload
+
+print:
+	@echo $(text)
+
+test-all:
+	@poetry shell && poetry run pytest 
