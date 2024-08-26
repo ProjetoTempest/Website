@@ -12,28 +12,6 @@ from .. controllers import user_controller
 
 routerUser = APIRouter(prefix="/users")
 
-def safe_file_to_server(uploaded_file, name_user):
-    path = "/home/will/Documentos/project_tempest/Website/Backend/imagens/"
-    if not os.path.exists(path):
-        os.makedirs(path)
-
-    extension = os.path.splitext(uploaded_file.filename) [-1]
-    temp_file_name = os.path.join(path, name_user + extension)
-
-    with open(temp_file_name, "wb") as buffer:
-        shutil.copyfileobj (uploaded_file.file, buffer)
-    return temp_file_name
-
-"""
-    Rota para criar um user
-
-    Args:
-        user (models.UserCreate): Dados do user.
-        db (Session): Cria e gerencia transações do banco de dados.
-
-    Returns:
-        models.UserBase: A soma de a e b.
-"""
 @routerUser.post("/", response_model= schemas.UserBase)
 async def create_user(
     user: schemas.UserCreate,

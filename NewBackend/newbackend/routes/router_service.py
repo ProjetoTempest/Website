@@ -4,74 +4,10 @@ from typing import List, Optional
 from ..database import get_db
 from sqlalchemy.orm import Session
 
-from .. import schemas, models
+from .. import schemas
 from ..controllers import service_controller  
 
-import os
-import shutil
-
 routerService = APIRouter(prefix="/services")
-
-async def save_images(images: List[UploadFile], service: str):
-    """
-    Função auxiliar para salvar imagens no diretório especificado.
-
-    Args:
-    - images (List[UploadFile]): Lista de arquivos de imagem a serem salvos.
-    - service (str): Nome do serviço para criar o nome do arquivo.
-
-    Returns:
-    - List[str]: Lista de caminhos dos arquivos salvos.
-    """
-    path = "/home/will/Documentos/project_tempest/Website/Backend/imagens/"
-    if not os.path.exists(path):
-        os.makedirs(path)
-
-    saved_image_urls = []
-    for img in images:
-        extension = os.path.splitext(img.filename)[-1]
-        temp_file_name = os.path.join(path, service + img.filename)
-
-        saved_image_urls.append(temp_file_name)
-        with open(temp_file_name, "wb") as buffer:
-            shutil.copyfileobj(img.file, buffer)
-
-    return saved_image_urls
-
-
-# @routerService.post("/")
-# async def create_service(
-#     title: str = Form(...),
-#     description: str = Form(...),
-#     value: float = Form(...),
-#     images: Optional[List[UploadFile]] = File(None),
-#     db: Session = Depends(get_db)
-# ):
-#     """
-#     Rota para criar um novo serviço no banco de dados.
-
-#     Args:
-#     - title (str): Título do serviço.
-#     - description (str): Descrição do serviço.
-#     - value (float): Valor do serviço.
-#     - images (List[UploadFile]): Lista de arquivos de imagem a serem associados ao serviço.
-#     - db (Session): Sessão do banco de dados para executar a operação de criação.
-
-#     Returns:
-#     - models.Services: Objeto do serviço criado no banco de dados.
-#     """
-#     service_dict = {
-#         "title": title,
-#         "description": description,
-#         "value": value,
-#         "images": None,
-#     }
-
-#     if images:
-#         saved_image_urls = await save_images(images, title)
-#         service_dict['images'] = saved_image_urls
-
-#     return service_controller.create_service(db=db, service=service_dict)
 
 @routerService.post("/", response_model=schemas.ServiceResponse)
 async def create_service( servico: schemas.ServiceCreate,

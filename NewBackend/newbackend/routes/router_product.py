@@ -1,6 +1,7 @@
 from fastapi import APIRouter, UploadFile, File
 from fastapi import Depends, HTTPException
 from typing import Annotated, List
+from fastapi import status
 
 from fastapi.responses import FileResponse
 from pathlib import Path
@@ -21,25 +22,6 @@ from ..controllers import product_controller
 
 routerProduct = APIRouter(prefix="/products")
 
-async def save_images(images: list[UploadFile], product: str):
-
-    path = "/home/will/Documentos/project_tempest/Website/Backend/imagens/"
-    if not os.path.exists(path):
-        os.makedirs(path)
-
-    listPath = []
-    for img in images:
-        extension = os.path.splitext(img.filename) [-1]
-        temp_file_name = os.path.join(path, product + img.filename)
-
-
-        listPath.append(temp_file_name)
-        with open(temp_file_name, "wb") as buffer:
-            shutil.copyfileobj (img.file, buffer)
-
-    return listPath
-
-
 
 @routerProduct.post("/", response_model=schemas.Product) 
 async def create_product(product: schemas.ProductCreate, db: Session = Depends(get_db)):
@@ -56,7 +38,8 @@ async def create_product(product: schemas.ProductCreate, db: Session = Depends(g
     Returns:
     - models.Products: Objeto do produto criado no banco de dados.
     """
-
+    if product.value <= 0:
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="Produto com valor inválido")
     return product_controller.create_product(db=db, product=product)
 
 
