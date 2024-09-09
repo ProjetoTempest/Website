@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form id="loginForm">
+                    <img src="../../pictures/Sem-Título-1-removebg-preview.png" alt="Login">
+                    <h2>Login</h2>
+                    <div class="input-box">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" name="" id="email" required>
+                        <label for="email">Email</label>
+                    </div>
+                    <div class="input-box">
+                        <ion-icon name="eye-off-outline" id="togglePassword"></ion-icon>
+                        <input type="password" name="" id="senha" required>
+                        <label for="senha">Senha</label>
+                    </div>
+                    <button type="submit" id="loginButton">Login</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inclua a biblioteca jwt-decode para decodificar o token -->
+    <script src="https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.min.js"></script>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const loginButton = document.getElementById('loginButton');
+        const passwordInput = document.getElementById('senha');
+        const emailInput = document.getElementById('email');
+        const loginForm = document.getElementById('loginForm');
+
+        // Função para alternar a visibilidade da senha
+        togglePassword.addEventListener('click', () => {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePassword.name = 'eye-outline';
+            } else {
+                passwordInput.type = 'password';
+                togglePassword.name = 'eye-off-outline';
+            }
+        });
+
+        // Manipulação do formulário de login
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Evita o recarregamento da página
+
+            const email = emailInput.value;
+            const senha = passwordInput.value;
+
+            if (email === '' || senha === '') {
+                alert('Preencha todos os campos');
+                return;
+            }
+
+            // Enviando as credenciais para o servidor
+            try {
+                const response = await fetch('https://seu-servidor-api.com/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, senha })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Armazenando o JWT no localStorage
+                    const token = data.token;
+                    localStorage.setItem('token', token);
+
+                    // Decodifica o token para obter a role
+                    const decodedToken = jwt_decode(token);
+                    const userRole = decodedToken.role;
+
+                    alert('Login bem-sucedido! Redirecionando...');
+                    console.log('Login bem-sucedido! Role:', userRole);
+
+                    // Redireciona o usuário com base na role
+                    if (userRole === 'admin') {
+                        window.location.href = '/adm.html';
+                    } else if (userRole === 'membro') {
+                        window.location.href = '/perfil.html';
+                    } else {
+                        console.error('Role desconhecida:', userRole);
+                    }
+
+                } else {
+                    alert('Falha no login: ' + data.message);
+                    console.log('Falha no login:', data.message);
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+            }
+        });
+
+    </script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
