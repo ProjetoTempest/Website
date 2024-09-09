@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/adm.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>Administrador</title>
+  <style>
+    .menu-options {
+      width: 50%;
+      background-color: #040484;
+      color: white;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      z-index: 30;
+    }
+    .menu-options a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    .menu-options a.active {
+      background-color: white;
+      color: #040484;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="menuA">
+    <nav>
+      <a href="../../index.html"><i class="fas fa-home"></i></a>
+    </nav>
+  </div>
+  <section class="profile-section">
+    <div class="profile-picture">
+      <img src="../../pictures/profile.png" alt="Foto do Administrador">
+      <h2 class="profile-name">Administrador</h2>
+    </div>
+    <div class="filter">
+      <label for="filtro">Filtrar por:</label>
+      <select id="filtro">
+        <option value="nome">Nome</option>
+        <option value="cargo">Cargo</option>
+      </select>
+    </div>
+  </section>
+  <div class="menu-options">
+    <a href="#membrosTable" class="menu-link">Tabela de Membros</a>
+    <a href="#productTable" class="menu-link">Tabela de Produtos</a>
+    <a href="#servicosTable" class="menu-link">Tabela de Serviços</a>
+  </div>
+  <section class="membros">
+    <button class="adicionarBtn"><a href="cadastro.html"><i class="fas fa-user-plus"></i> Adicionar Membro</a></button>
+    <button class="editarBtn"><i class="fas fa-user-edit"></i> Editar Membro</button>
+    <button class="excluirBtn">Excluir Membro</button>
+    <div id="deleteNotification" class="notification">Membro excluído com sucesso!</div>
+    <div id="cancelNotification" class="notification">Ação de exclusão cancelada!</div>
+    <button class="confirmarBtn" style="display: none;"><i class="fas fa-check"></i> Confirmar Edição</button>
+  </section>
+  <section class="tabela">
+    <table id="membrosTable">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Login</th>
+          <th>Senha</th>
+          <th>Cargo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Os dados serão inseridos aqui -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"></td> 
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+  <section class="produtos">
+    <button class="adicionarBtnP"><a href="cadastroProduto.html"><i class="fas fa-plus-circle"></i> Adicionar Produto</a></button>
+    <button class="editarBtnP"><i class="fas fa-edit"></i> Editar Produto</button>
+    <button class="excluirBtnP"><i class="fas fa-trash-alt"></i> Excluir Produto</button>
+    <div id="deleteNotificationP" class="notification">Produto excluído com sucesso!</div>
+    <div id="cancelNotificationP" class="notification">Ação de exclusão cancelada!</div>
+    <button class="confirmarBtnP" style="display: none;"><i class="fas fa-check"></i> Confirmar Edição</button>
+  </section>
+  <section id="tabela-produto" class="tabela-produto">
+    <table id="productTable">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Valor</th>
+          <th>Imagem</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Os dados serão inseridos aqui -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"></td> 
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+  <section class="servicos">
+    <button class="adicionarBtnP"><a href="cadastroProduto.html"><i class="fas fa-plus-circle"></i> Adicionar Produto</a></button>
+    <button class="editarBtnP"><i class="fas fa-edit"></i> Editar Produto</button>
+    <button class="excluirBtnP"><i class="fas fa-trash-alt"></i> Excluir Produto</button>
+    <div id="deleteNotificationP" class="notification">Produto excluído com sucesso!</div>
+    <div id="cancelNotificationP" class="notification">Ação de exclusão cancelada!</div>
+    <button class="confirmarBtnP" style="display: none;"><i class="fas fa-check"></i> Confirmar Edição</button>
+  </section>
+  <section id="tabela-produto" class="tabela-produto">
+    <table id="productTable">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Valor</th>
+          <th>Imagem</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Os dados serão inseridos aqui -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"></td> 
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuLinks = document.querySelectorAll('.menu-link');
+      menuLinks.forEach(link => {
+        link.addEventListener('click', function () {
+          menuLinks.forEach(link => link.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+    });
+  </script>
+  <script src="../js/adm.js"></script>
+</body>
+</html>

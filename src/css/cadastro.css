@@ -74,10 +74,10 @@
 
 .notification {
   position: fixed;
-  top: 20px;
+  top: 3.2rem;
   left: 50%;
   transform: translateX(-50%);
-  padding: 1rem;
+  padding: 0.5rem 3rem;
   border-radius: 0.5rem;
   color: white;
   text-align: center;

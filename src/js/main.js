@@ -52,10 +52,10 @@ document.addEventListener("DOMContentLoaded", function () {
         step = (visibleCards + 0.04);
       }
       if (window.innerWidth < 500) {
-        step = (visibleCards + 0.06);
+        step = (visibleCards + 0.055);
       }
       if (window.innerWidth < 400) {
-        step = (visibleCards + 0.07);
+        step = (visibleCards + 0.065);
       }
       if (direction === 'next' && currentIndex < Math.floor((carrosselContainer.scrollWidth - carrosselContainer.clientWidth) / cardWidth)) {
         currentIndex += step; // Pula pelo número de cards visíveis
@@ -139,10 +139,10 @@ document.addEventListener("DOMContentLoaded", function () {
         step = (visibleCards + 0.04);
       }
       if (window.innerWidth < 500) {
-        step = (visibleCards + 0.06);
+        step = (visibleCards + 0.055);
       }
       if (window.innerWidth < 400) {
-        step = (visibleCards + 0.07);
+        step = (visibleCards + 0.065);
       }
 
       if (direction === 'nextP' && currentIndex < Math.floor((carrosselContainer.scrollWidth - carrosselContainer.clientWidth) / cardWidth)) {

@@ -178,6 +178,10 @@ footer p {
   text-align: center;
 }
 
+.sobre h1 {
+  font-size: xx-large;
+}
+
 .sobre-texto {
   display: flex;
   justify-content: center;
@@ -197,6 +201,10 @@ footer p {
 .comotrabalhamos {
   width: 100%;
   padding: 5rem;
+}
+
+.comotrabalhamos h1 {
+  font-size: xx-large;
 }
 
 .comotrabalhamos-texto p {
@@ -249,6 +257,8 @@ footer p {
 .equipe h1 {
   text-align: center;
   margin-bottom: 2rem;
+  color: #010570;
+  font-size: xx-large;
 }
 
 .equipe {
@@ -372,6 +382,7 @@ footer p {
 .service h1 {
   text-align: center;
   margin-bottom: 2rem;
+  font-size: xx-large;
 }
 
 .servicos-content {
@@ -444,6 +455,8 @@ footer p {
 .produto h1 {
   text-align: center;
   margin-bottom: 2rem;
+  color: #010570;
+  font-size: xx-large;
 }
 
 .produto {

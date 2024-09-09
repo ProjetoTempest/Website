@@ -21,7 +21,7 @@
     </div>
   </section>
   <section class="register-section">
-    <form class="register-form">
+    <form id="registerForm" class="register-form">
       <label for="name">Nome:</label>
       <input type="text" id="name" name="name" required>
       <label for="login">Login:</label>
@@ -34,9 +34,23 @@
       <label for="role">Cargo:</label>
       <input type="text" id="role" name="role" required>
       <input type="submit" value="Cadastrar">
+      <!--<button id="clearLocalStorage">Limpar LocalStorage</button>-->
     </form>
-    <div id="notification" class="notification"></div>
+    <div id="notification" class="notification">Membro cadastrado com sucesso!</div>
   </section>
   <script src="../js/cadastro.js"></script>
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault(); 
+      window.location.href = 'adm.html';
+    });
+  </script>
+  
+  <!--<script>
+    document.getElementById('clearLocalStorage').addEventListener('click', function() {
+      localStorage.clear();
+      alert('LocalStorage limpo com sucesso!');
+    });
+  </script>-->
 </body>
 </html>

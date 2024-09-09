@@ -1,0 +1,42 @@
+.nome-servico {
+  padding: 5rem 0 2rem 0;
+  text-align: center;
+}
+
+.nome-servico h1 {
+  font-size: 2.5rem;
+  color: #010570;
+  margin: 0;
+}
+
+.servico-expandido {
+  width: 100%;
+  text-align: center;
+}
+
+.servico-img {
+  width: 100%;
+  height: 60vh; 
+  overflow: hidden;
+}
+
+.servico-img img {
+  margin: 0 auto;
+  width: 60%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.servico-texto {
+  padding: 2rem 20%;
+  text-align: justify;
+  line-height: 1.6;
+  color: black;
+  background-color: #fff;
+}
+
+.servico-texto p {
+  font-size: 1.1rem;
+  margin: 0;
+}

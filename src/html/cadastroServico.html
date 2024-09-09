@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/adm.css">
+  <link rel="stylesheet" href="../css/cadastro.css">
+  <link rel="stylesheet" href="../css/cadastroProduto.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <title>Cadastro</title>
+</head>
+<body>
+  <div class="menuA">
+    <nav>
+      <a href="adm.html"><i class="fas fa-user-cog"></i></a>
+    </nav>
+  </div>
+  <section class="profile-section">
+    <div class="profile-picture">
+      <img src="../../pictures/profile.png" alt="Foto do Administrador">
+      <h2 class="profile-name">Administrador</h2>
+    </div>
+  </section>
+  <section class="register-section">
+    <form id="registerForm" class="register-form">
+      <label for="nameService">Nome:</label>
+      <input type="text" id="nameservice" name="name" required>
+
+      <label for="description">Descrição:</label>
+      <textarea id="description" name="description" required></textarea>
+
+      <label for="price">Valor:</label>
+      <input type="number" id="price" name="price" required>
+
+      <label for="image">Selecionar uma imagem:</label>
+      <input type="file" id="image" name="image" accept="image/*" required>
+
+      <input type="submit" value="Cadastrar">
+    </form>
+    <div id="notification" class="notification"></div>
+  </section>
+  <script src="../js/cadastroServico.js"></script>
+</body>
+</html>

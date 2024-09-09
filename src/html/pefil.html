@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil</title>
+  <link rel="stylesheet" href="../css/perfil.css">
+</head>
+<body>
+  <div class="profile-container">
+    <div class="profile-picture">
+      <img src="../../pictures/profile.png" alt="Foto do Membro">
+      <div class="button-edit">
+        <button class="edit-button">Editar</button>
+      </div>
+    </div>
+    <div class="profile-details">
+      <p>Nome: Juliano Marques</p>
+      <p>Cargo: DEV</p>
+    </div>
+    <div class="redes-sociais">
+      <p>Redes Sociais</p>
+      <div class="redes-sociais-img">
+        <img src="../../pictures/instagram.png" alt="Rede social">
+        <img src="../../pictures/watss.png" alt="Rede social">
+        <img src="../../pictures/facebook.png" alt="Rede social">
+      </div>
+    </div>
+    <div class="redes-sociais">
+      <p>Dominio</p>
+      <div class="Dominio-img">
+        <img src="../../pictures/figma.png" alt="Rede social">
+      </div>
+    </div>
+  </div>
+  <div class="sobre-container">
+    <h2>Sobre</h2>
+    <p>Sou Juliano Marques, uma desenvolvedora apaixonada por desafios de código e soluções inovadoras. Com determinação e criatividade, mergulho em projetos de software, otimizando desempenho e buscando excelência. Fora do trabalho, compartilho minha paixão pela tecnologia, inspirando outros com minhas descobertas.</p>
+    <div class="projetos-trabalhou">
+      <p>Projetos os quais trabalhou</p>
+      <div class="corrossel-simples">
+        <button class="prev" onclick="moveCarousel(-1)">&#10094;</button>
+        <div class="carousel-images">
+          <div class="carousel-item">
+            <img src="../../pictures/product1.png" alt="Projeto 1">
+            <button class="view-button" data-url="vermais1.html">Ver Projeto</button>
+          </div>
+          <div class="carousel-item">
+            <img src="../../pictures/product2.png" alt="Projeto 2">
+            <button class="view-button" data-url="vermais1.html">Ver Projeto</button>
+          </div>
+          <div class="carousel-item">
+            <img src="../../pictures/product1.png" alt="Projeto 3">
+            <button class="view-button" data-url="vermais1.html">Ver Projeto</button>
+          </div>
+          <div class="carousel-item">
+            <img src="../../pictures/product2.png" alt="Projeto 4">
+            <button class="view-button" data-url="vermais1.html">Ver Projeto</button>
+          </div>
+          <div class="carousel-item">
+            <img src="../../pictures/produtosex.avif" alt="Projeto 5">
+            <button class="view-button" data-url="vermais1.html">Ver Projeto</button>
+          </div>
+        </div>
+        <button class="next" onclick="moveCarousel(1)">&#10095;</button>
+      </div>            
+    </div>
+  </div>
+  <script>
+    let currentIndex = 0;
+
+    document.querySelectorAll('.view-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const url = this.getAttribute('data-url');
+        window.location.href = url;
+      });
+    });
+
+    function moveCarousel(direction) {
+      const carousel = document.querySelector('.carousel-images');
+      const images = carousel.querySelectorAll('img');
+      const totalImages = images.length;
+      const visibleImages = 3; // Número de imagens visíveis por vez
+      const maxIndex = totalImages - visibleImages;
+
+      currentIndex += direction;
+
+      if (currentIndex < 0) {
+        currentIndex = maxIndex;
+      } else if (currentIndex > maxIndex) {
+        currentIndex = 0;
+      }
+
+      const offset = currentIndex * -100 / visibleImages; // Move o carrossel com base na quantidade de imagens visíveis
+      carousel.style.transform = `translateX(${offset}%)`;
+    }
+
+  </script>
+</body>
+</html>

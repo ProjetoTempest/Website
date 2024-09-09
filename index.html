@@ -46,15 +46,15 @@
       <img class="home-img" src="pictures/logo_white.svg" alt="imagem">
     </div>
   </div>
-  <div id="sobre" class="sobre">
+  <section id="sobre" class="sobre">
     <h1>Sobre</h1>
     <div class="sobre-texto">
       <p>Somos uma equipe de desenvolvimento de soluções por meio da aplicação da tecnologia. Nosso foco está em desenvolver soluções através da aplicação da tecnologia e análises detalhadas dos problemas enfrentados pelos nossos clientes. Atuamos na área de soluções web, oferecendo Sistemas de Gerenciamento, Plataformas Analíticas, Blogs e Sistemas Customizados, todos projetados conforme as necessidades específicas de cada cliente. 
         Se você tem algum problema no seu negócio e acha que a tecnologia pode te ajudar, então entre em contato conosco que iremos trabalhar juntos para preparar a melhor solução para o seu problema.
         </p>
     </div>
-  </div>
-  <div id="comotrabalhamos" class="comotrabalhamos">
+  </section>
+  <section id="comotrabalhamos" class="comotrabalhamos">
     <h1>Como Trabalhamos</h1>
     <div class="comotrabalhamos-texto">
       <p>Tudo começa a partir de uma reunião com o cliente para entender bem o problema que iremos abordar, suas dificuldades, necessidades 
@@ -77,8 +77,8 @@
         <img src="pictures/8497398_3937434.jpg" alt="imagem">
       </div>
     </div>
-  </div>
-  <div id="equipe" class="equipe">
+  </section>
+  <section id="equipe" class="equipe">
     <h1>Equipe</h1>
     <div class="equipe-content">
       <button id="prev" class="button"><i class="fas fa-chevron-left"></i></button>
@@ -195,8 +195,8 @@
       </div>
       <button id="next" class="button"><i class="fas fa-chevron-right"></i></button>
     </div>
-  </div>
-  <div id="servicos" class="servicos">
+  </section>
+  <section id="servicos" class="servicos">
     <div class="service">
       <h1>Serviços</h1> 
     </div>
@@ -209,7 +209,9 @@
           <img src="pictures/Ellipse 15.png" alt="imagem">
         </div>
         <div class="servicos-vermais">
-          <button>Ver mais</button>
+          <a href="./src/html/servicos1.html">
+            <button>Ver mais</button>
+          </a>
         </div>
       </div>
       <div class="servicos-container">
@@ -220,7 +222,9 @@
           <img src="pictures/Ellipse 16.png" alt="imagem">
         </div>
         <div class="servicos-vermais">
-          <button>Ver mais</button>
+          <a href="./src/html/servicos2.html">
+            <button>Ver mais</button>
+          </a>
         </div>
       </div>
       <div class="servicos-container">
@@ -231,12 +235,14 @@
           <img src="pictures/Ellipse 17.png" alt="imagem">
         </div>
         <div class="servicos-vermais">
-          <button>Ver mais</button>
+          <a href="./src/html/servicos3.html">
+            <button>Ver mais</button>
+          </a>
         </div>
       </div>
     </div>
-  </div>
-  <div id="produto" class="produto">
+  </section>
+  <section id="produtos" class="produto">
     <h1>Produto</h1>
     <div class="produto-content">
       <button id="prevP" class="button"><i class="fas fa-chevron-left"></i></button>
@@ -249,7 +255,7 @@
             <img src="pictures/produtosex.avif" alt="imagem">
           </div>
           <div class="servicos-vermais">
-            <button>Ver mais</button>
+            <button onclick="verMais('./src/html/vermais1.html')">Ver mais</button>
           </div>
         </div>
         <div class="produto-container">
@@ -260,7 +266,7 @@
             <img src="pictures/produtosex.avif" alt="imagem">
           </div>
           <div class="servicos-vermais">
-            <button>Ver mais</button>
+            <button onclick="verMais('./src/html/vermais1.html')">Ver mais</button>
           </div>
         </div>
         <div class="produto-container">
@@ -271,7 +277,7 @@
             <img src="pictures/produtosex.avif" alt="imagem">
           </div>
           <div class="servicos-vermais">
-            <button>Ver mais</button>
+            <button onclick="verMais('./src/html/vermais1.html')">Ver mais</button>
           </div>
         </div>
         <div class="produto-container">
@@ -282,7 +288,7 @@
             <img src="pictures/produtosex.avif" alt="imagem">
           </div>
           <div class="servicos-vermais">
-            <button>Ver mais</button>
+            <button onclick="verMais('./src/html/vermais1.html')">Ver mais</button>
           </div>
         </div>
         <div class="produto-container">
@@ -293,7 +299,7 @@
             <img src="pictures/produtosex.avif" alt="imagem">
           </div>
           <div class="servicos-vermais">
-            <button>Ver mais</button>
+            <button onclick="verMais('./src/html/vermais1.html')">Ver mais</button>
           </div>
         </div>   
         <div class="produto-container">
@@ -304,14 +310,17 @@
             <img src="pictures/produtosex.avif" alt="imagem">
           </div>
           <div class="servicos-vermais">
-            <button>Ver mais</button>
+            <button onclick="verMais('./src/html/vermais1.html')">Ver mais</button>
           </div>
         </div>     
       </div>
       <button id="nextP" class="button"><i class="fas fa-chevron-right"></i></button>
     </div>
-  </div>
-  <div id="contato" class="contato">
+    <div class="servicos-vermais">
+      <button onclick="verMais('./src/html/produtos.html')">Todos os produtos</button>
+    </div>    
+  </section>
+  <section id="contato" class="contato">
     <h1>Entre em Contato</h1>
     <div class="formulario">
       <form id="formContato">
@@ -324,10 +333,15 @@
         <input type="submit" value="Enviar">
       </form>
     </div>
-  </div>
+  </section>
   <footer>
     <p>&copy; 2024 Projeto Tempest. Todos os direitos reservados.</p>
   </footer>
   <script src="./src/js/main.js"></script>
+  <script>
+    function verMais(url) {
+      window.location.href = url;
+    }
+  </script>
 </body>
 </html>

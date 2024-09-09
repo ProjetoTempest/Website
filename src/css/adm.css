@@ -16,7 +16,7 @@
   align-items: center;
   position: fixed;
   background-color: black;
-  z-index: 1000;
+  z-index: 100;
   padding: 1rem;
 }
 
@@ -70,10 +70,37 @@
   padding: 0.1rem 1.5rem;
 }
 
+.menu-options {
+  /*width: 40%;
+  left: 0;
+  right: 0;*/
+  margin: 0 auto;
+  background-color: #040484;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  position: fixed;
+  z-index: 999;
+}
+.menu-options a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 18px;
+}
+.menu-options a.active {
+  background-color: white;
+  color: #040484;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
 .membros {
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
+  margin-top: 5rem;
 }
 
 .membros button {
@@ -87,10 +114,12 @@
   cursor: pointer;
 }
 
-.adicionarBtn a {
+.adicionarBtn a, .adicionarBtnP a {
   text-decoration: none;
   color: white;
 }
+
+
 
 .membros button:nth-child(1) {
   color: white;
@@ -110,8 +139,33 @@
   border-color: red;
 }
 
+.notification {
+  position: fixed;
+  top: 5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 3rem;
+  border-radius: 0.5rem;
+  color: white;
+  text-align: center;
+  display: none;
+  z-index: 1000;
+}
+
+.notification.success {
+  background-color: #4caf50;
+}
+
+.notification.error {
+  background-color: #f44336;
+}
+.show {
+  display: block;
+}
+
 .tabela {
   padding: 2rem;
+  margin-bottom: 3rem;
 }
 
 table {
@@ -185,6 +239,42 @@ tfoot > tr > td {
 
 .tabela-produto {
   padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.servicos {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.servicos button {
+  width: 15rem;
+  padding: 0.5rem 1rem;
+  margin: 0 0.8rem;
+  border-radius: 1.5rem;
+  background-color: transparent;
+  border: 2px solid;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.servicos button:nth-child(1) {
+  color: white;
+  background-color: green;
+  border-color: green;
+}
+
+.servicos button:nth-child(2) {
+  color: white;
+  background-color: #010570;
+  border-color: #010570;
+}
+
+.servicos button:nth-child(3) {
+  color: white;
+  background-color: red;
+  border-color: red;
 }
 
 
