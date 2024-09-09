@@ -1,26 +1,19 @@
-from sqlalchemy import Column, Integer, String, Float, ForeignKey, Text
-from sqlalchemy.orm import Mapped, mapped_column,relationship
-from db.base import Base
+from app.db.base import Base
+from sqlalchemy import Float, ForeignKey, Integer, String, Text
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 class Role(Base):
     __tablename__ = 'role'
-    id:Mapped[str] = mapped_column(String, primary_key=True)
-    name:Mapped[str] = mapped_column(String, nullable=False, unique=True)
-    description:Mapped[str] = mapped_column(String, nullable=True)
+    id: Mapped[str] = mapped_column(String, primary_key=True)
+    name: Mapped[str] = mapped_column(String, nullable=False, unique=True)
+    description: Mapped[str] = mapped_column(String, nullable=True)
+    users = relationship("User", back_populates="role")
 
 class IntermediariaUserProducts(Base):
     __tablename__ = 'intermediaria_user_products'
-    id:Mapped[str] = mapped_column(Integer, primary_key=True, index=True)
-    user_id:Mapped[str] = mapped_column(Integer, ForeignKey('user.id'))
-    products_id = mapped_column(Integer, ForeignKey('products.id'))
-
-class Products(Base):
-    __tablename__ = 'products'
-    id:Mapped[str] = mapped_column(Integer, primary_key=True, index=True)
-    title:Mapped[str] = mapped_column(String, index=True)
-    description:Mapped[str] = mapped_column(Text, nullable=True)
-    value:Mapped[str] = mapped_column(Float, nullable=False)
-    images = relationship("ImagesProducts", back_populates="products")
+    id: Mapped[str] = mapped_column(String, primary_key=True, index=True)
+    user_id: Mapped[str] = mapped_column(String, ForeignKey('user.id'))
+    products_id: Mapped[str] = mapped_column(String, ForeignKey('products.id'))
 
 class Products(Base):
     __tablename__ = 'products'
@@ -28,6 +21,7 @@ class Products(Base):
     title: Mapped[str] = mapped_column(String, index=True)
     description: Mapped[str] = mapped_column(Text, nullable=True)
     value: Mapped[float] = mapped_column(Float, nullable=False)
+    # qtd_img: Mapped[int] = mapped_column(Integer, nullable=True)
     images = relationship("ImagesProducts", back_populates="products")
 
 class ImagesProducts(Base):
@@ -48,7 +42,8 @@ class Service(Base):
     id: Mapped[str] = mapped_column(String, primary_key=True, index=True)
     title: Mapped[str] = mapped_column(String, index=True)
     description: Mapped[str] = mapped_column(Text, nullable=True)
-    value: Mapped[float] = mapped_column(Float)
+    value: Mapped[float] = mapped_column(Float, nullable=False)
+    # qtd_img: Mapped[int] = mapped_column(Integer, nullable=True)
     images = relationship("ImagesService", back_populates="service")
 
 class ImagesService(Base):
@@ -68,13 +63,6 @@ class User(Base):
     description: Mapped[str] = mapped_column(Text, nullable=True)
     password: Mapped[str] = mapped_column(String)
     role = relationship("Role", back_populates="users")
-
-class Role(Base):
-    __tablename__ = 'role'
-    id: Mapped[str] = mapped_column(String, primary_key=True, index=True)
-    name: Mapped[str] = mapped_column(String, nullable=False, unique=True)
-    description: Mapped[str] = mapped_column(Text, nullable=True)
-    users = relationship("User", back_populates="role")
 
 class Tecnologia(Base):
     __tablename__ = 'tecnologia'

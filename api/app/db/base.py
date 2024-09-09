@@ -1,11 +1,12 @@
-from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.inspection import inspect
+from sqlalchemy.orm import DeclarativeBase
+
 
 class Base(DeclarativeBase):
     """
     Class that allows you to connect objects to tables in the database, in addition to mapping them so that the class becomes a table in the database
     
-    If printed, the class will display all its attributes and values ​​(if any)
+    If printed, the class will display all its attributes and values \u200b\u200b(if any)
     """
     def __repr__(self) -> str:
         cls = self.__class__
@@ -13,7 +14,7 @@ class Base(DeclarativeBase):
         columns = {attr.key: getattr(self, attr.key) for attr in column_attrs}
         columns_str = ", ".join(f"{key}={value!r}" for key, value in columns.items())
         return f"{cls.__name__}({columns_str})"
-    
+
     def dict(self) -> dict:
         """
         Converte o objeto para um dicionário, removendo chaves com valores None.

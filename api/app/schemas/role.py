@@ -1,7 +1,8 @@
-from pydantic import model_validator, field_validator
 from fastapi import HTTPException
+from pydantic import field_validator, model_validator
 
-from schemas.base import CustomBaseModel
+from app.schemas.base import CustomBaseModel
+
 
 class RoleRequest(CustomBaseModel):
     """
@@ -11,7 +12,7 @@ class RoleRequest(CustomBaseModel):
     """
     name: str | None = None
     description: str | None = None
-    
+
     """
     @model_validator(mode='before')
     def check_passwords_match(cls, values):
@@ -26,26 +27,26 @@ class RoleRequest(CustomBaseModel):
         
         return values
     """
-    
-    
+
     @field_validator('name', mode='before')
     def validate_birth_date(cls, name):
-        
-        if name is None:
+
+        if name is None or name == '':
             raise HTTPException(status_code=400, detail='O campo nome é obrigatório')
-        
+
         if not isinstance(name, str):
             raise HTTPException(status_code=400, detail='O campo nome precisa ser do tipo string')
-        
+
         return name
-    
-    
+
+
 """class RoleInDB(RoleRequest):
 
     id: str
     class Config:
         from_attributes = True"""
-        
+
+
 class RoleUpdate(RoleRequest):
     """
     - Attributes:
@@ -53,19 +54,19 @@ class RoleUpdate(RoleRequest):
         - name: str
         - description: str | None
     """
-    id:str
-    
+    id: str
+
     @model_validator(mode='before')
-    def check_passwords_match(cls, values):
+    def check_name_description_empty(cls, values):
         name = values.get('name')
         description = values.get('description')
-        
-        if not name and not description:
+
+        if not name or not description:
             raise HTTPException(400, "Informe ao menos um campo para atualizar")
-        
+
         return values
 
-        
+
 class RoleResponse(CustomBaseModel):
     """
     - Attributes:
