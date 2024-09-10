@@ -36,7 +36,7 @@
     <hr class="title-line">
   </div>
   <section class="produtos-expandido">
-    <div class="produto-container">
+    <!-- <div class="produto-container">
       <div class="produto-name product">
         <h4>Name Product1</h4>
       </div>
@@ -123,15 +123,79 @@
       <div class="servicos-vermais">
         <button onclick="verMais('vermais1.html')">Ver mais</button>
       </div>
-    </div>
+    </div> -->
   </section>
   <footer>
     <p>&copy; 2024 Projeto Tempest. Todos os direitos reservados.</p>
   </footer>
   <script>
+    // function verMais(url) {
+    //   window.location.href = url;
+    // }
+    // Função para criar os elementos de produto no HTML
+    // Função para criar os elementos de produto no HTML
+    function criarProduto(produto) {
+      const container = document.createElement('div');
+      container.className = 'produto-container';
+
+      const nome = document.createElement('div');
+      nome.className = 'produto-name product';
+      const titulo = document.createElement('h4');
+      titulo.textContent = produto.title;
+      nome.appendChild(titulo);
+
+      const imgContainer = document.createElement('div');
+      imgContainer.className = 'equipe-img product';
+      const img = document.createElement('img');
+      console.log(produto.images);
+      img.src = produto.images.length > 0 ? produto.images[0].url : '../../pictures/produtosex.avif';
+      // img.src =  produto.images[0].url;
+      // img. =  "/home/will/Imagens/Capturas de tela/1.png";
+      img.alt = 'Imagem do produto';
+      imgContainer.appendChild(img);
+
+      const botaoContainer = document.createElement('div');
+      botaoContainer.className = 'servicos-vermais';
+      const botao = document.createElement('button');
+      botao.textContent = 'Ver mais';
+      botao.onclick = () => verMais(`vermais1.html?id=${produto.id}`);
+      botaoContainer.appendChild(botao);
+
+      container.appendChild(nome);
+      container.appendChild(imgContainer);
+      container.appendChild(botaoContainer);
+
+      return container;
+    }
+
+    // Função para buscar produtos da API
+    async function carregarProdutos() {
+      try {
+        const response = await fetch('http://127.0.0.1:8000/products/all/');
+        const produtos = await response.json();
+
+        console.log("Produtos ", produtos);
+
+        // Use querySelector para selecionar o primeiro elemento com a classe 'produtos-expandido'
+        const produtosExpandido = document.querySelector('.produtos-expandido');
+
+        produtos.forEach(produto => {
+          const produtoElement = criarProduto(produto);
+          produtosExpandido.appendChild(produtoElement);
+        });
+      } catch (error) {
+        console.error('Erro ao carregar produtos:', error);
+      }
+    }
+
+    // Carregar os produtos ao carregar a página
+    window.onload = carregarProdutos;
+
     function verMais(url) {
       window.location.href = url;
     }
+
+
   </script>
 </body>
 </html>

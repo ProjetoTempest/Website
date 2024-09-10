@@ -20,7 +20,7 @@
   <section class="produto-section">
     <h2 class="produto-name">Nome do Produto</h2>
     <div class="produto-image">
-      <img src="../../pictures/produtosex.avif" alt="Imagem principal do produto">
+      <img id="imagem-principal" src="../../pictures/produtosex.avif" alt="Imagem principal do produto">
     </div>
     <div class="produto-text">
       <h3 class="produto-name">Sobre</h3>
@@ -38,5 +38,55 @@
   <footer>
     <p>&copy; 2024 Projeto Tempest. Todos os direitos reservados.</p>
   </footer>
+
+  <script>
+    // Função para extrair o ID da URL
+    function obterIdDaUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('id');
+    }
+
+    // Função para fazer a requisição à API usando o ID
+    async function carregarProduto() {
+      const id = obterIdDaUrl();
+      console.log('ID do produto:', id);
+
+      if (!id) {
+        console.error('ID do produto não encontrado na URL');
+        return;
+      }
+
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/products/${id}`);
+        const produto = await response.json();
+
+        // Atualizar o HTML com as informações do produto
+        document.querySelector('.produto-name').textContent = produto.title;
+        document.querySelector('.produto-text p').textContent = produto.description;
+        
+        // Imagem principal
+        document.getElementById('imagem-principal').src = produto.images.length > 0 ? produto.images[0].url : '../../pictures/produtosex.avif';
+        document.getElementById('imagem-principal').width = 300;
+        document.getElementById('imagem-principal').height = 300;
+
+        // Outras imagens
+        const imgContainer = document.querySelector('.outras-imagens');
+        imgContainer.innerHTML = ''; // Limpar imagens existentes
+        produto.images.forEach(image => {
+          const img = document.createElement('img');
+          img.src = image.url;
+          img.alt = 'Imagem do produto';
+          imgContainer.appendChild(img);
+        });
+
+      } catch (error) {
+        console.error('Erro ao carregar produto:', error);
+      }
+    }
+
+    // Carregar o produto ao carregar a página
+    window.onload = carregarProduto;
+
+  </script>
 </body>
 </html>
