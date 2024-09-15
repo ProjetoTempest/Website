@@ -47,6 +47,7 @@
           <th>Login</th>
           <th>Senha</th>
           <th>Cargo</th>
+          <th>Id Membro</th>
         </tr>
       </thead>
       <tbody>
@@ -133,7 +134,7 @@
           <th>Nome</th>
           <th>Descrição</th>
           <th>Valor</th>
-          <th>Imagem</th>
+          <th>ID produto</th>
         </tr>
       </thead>
       <tbody>
@@ -255,11 +256,11 @@
   </section>
   <section id="servicosTable" class="servicos">
     <button class="adicionarBtnP"><a href="cadastroServico.html"><i class="fas fa-plus-circle"></i> Adicionar Serviço</a></button>
-    <button class="editarBtnP"><i class="fas fa-edit"></i> Editar Serviço</button>
-    <button class="excluirBtnP"><i class="fas fa-trash-alt"></i> Excluir Serviço</button>
+    <button id="editarBtnS" class="editarBtnP"><i class="fas fa-edit"></i> Editar Serviço</button>
+    <button id="excluirBtnS" class="excluirBtnP"><i class="fas fa-trash-alt"></i> Excluir Serviço</button>
     <div id="deleteNotificationP" class="notification">Serviço excluído com sucesso!</div>
     <div id="cancelNotificationP" class="notification">Ação de exclusão cancelada!</div>
-    <button class="confirmarBtnP" style="display: none;"><i class="fas fa-check"></i> Confirmar Edição</button>
+    <button id="confirmarBtnS" class="confirmarBtnP" style="display: none;"><i class="fas fa-check"></i> Confirmar Edição</button>
   </section>
   <section id="tabela-servico" class="tabela-produto">
     <table>
@@ -268,7 +269,7 @@
           <th>Nome</th>
           <th>Descrição</th>
           <th>Valor</th>
-          <th>Imagem</th>
+          <th>Id Serviço</th>
         </tr>
       </thead>
       <tbody>

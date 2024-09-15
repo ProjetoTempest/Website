@@ -1,5 +1,5 @@
 /*document.addEventListener("DOMContentLoaded", function () {
-  const tbody = document.querySelector("#membrosTable tbody");
+  const tbody = document.querySelector(".tabela tbody");
   const excluirBtn = document.querySelector(".excluirBtn");
   const deleteNotification = document.getElementById('deleteNotification');
   const cancelNotification = document.getElementById('cancelNotification');
@@ -42,7 +42,7 @@
 });*/
 
 document.addEventListener("DOMContentLoaded", function () {
-  const tbody = document.querySelector("#membrosTable tbody");
+  const tbody = document.querySelector(".tabela tbody");
   const excluirBtn = document.querySelector(".excluirBtn");
   const deleteNotification = document.getElementById('deleteNotification');
   const cancelNotification = document.getElementById('cancelNotification');
@@ -62,10 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const selectedRow = tbody.querySelector("tr.selected");
       if (selectedRow) {
         if (confirm("Tem certeza de que deseja excluir este membro?")) {
-          const login = selectedRow.querySelector("td:nth-child(2)").textContent;
+          const id = selectedRow.querySelector("td:nth-child(5)").textContent;
 
           try {
-            const response = await fetch(`https://api.seuservidor.com/members/${login}`, {
+            const response = await fetch(`http://127.0.0.1:8000/users/delete/?id=${id}`, {
               method: 'DELETE'
             });
 
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   const filtroSelect = document.getElementById("filtro");
-  const tabelaBody = document.querySelector("#membrosTable tbody");
+  const tabelaBody = document.querySelector(".tabela tbody");
 
   // Função para ordenar as linhas da tabela com base no nome do membro
   function ordenarPorNome() {
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 /*
 document.addEventListener("DOMContentLoaded", function () {
-  const tabelaBody = document.querySelector("#membrosTable tbody");
+  const tabelaBody = document.querySelector(".tabela tbody");
   const editarBtn = document.querySelector(".editarBtn");
   const confirmarBtn = document.querySelector(".confirmarBtn");
   let editing = false; // Flag para indicar se a edição está habilitada
@@ -229,7 +229,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });*/
 
 document.addEventListener("DOMContentLoaded", function () {
-  const tabelaBody = document.querySelector("#membrosTable tbody");
+  const tabelaBody = document.querySelector(".tabela tbody");
   const editarBtn = document.querySelector(".editarBtn");
   const confirmarBtn = document.querySelector(".confirmarBtn");
   const notification = document.getElementById('notification');
@@ -271,13 +271,14 @@ document.addEventListener("DOMContentLoaded", function () {
       const cells = selectedRow.querySelectorAll("td");
       const memberData = {
         name: cells[0].textContent,
-        login: cells[1].textContent,
-        password: cells[2].textContent,
-        role: cells[3].textContent
+        email: cells[1].textContent,
+        // password: cells[2].textContent,
+        role: cells[3].textContent,
+        id: cells[4].textContent
       };
 
       try {
-        const response = await fetch(`https://api.seuservidor.com/members/${memberData.login}`, { 
+        const response = await fetch('http://127.0.0.1:8000/users/update/', { 
           method: 'PUT', // ou 'PATCH' dependendo da implementação da API
           headers: {
             'Content-Type': 'application/json'
@@ -338,7 +339,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /*document.addEventListener("DOMContentLoaded", function () {
-  const tbody = document.querySelector("#productTable tbody");
+  const tbody = document.querySelector(".tabela-produto tbody");
   const excluirBtn = document.querySelector(".excluirBtnP");
   const deleteNotification = document.getElementById('deleteNotification');
   const cancelNotification = document.getElementById('cancelNotification');
@@ -382,7 +383,7 @@ document.addEventListener("DOMContentLoaded", function () {
 */
 
 document.addEventListener("DOMContentLoaded", function () {
-  const tbody = document.querySelector("#productTable tbody");
+  const tbody = document.querySelector(".tabela-produto tbody");
   const excluirBtn = document.querySelector(".excluirBtnP");
   const deleteNotification = document.getElementById('deleteNotification');
   const cancelNotification = document.getElementById('cancelNotification');
@@ -390,7 +391,9 @@ document.addEventListener("DOMContentLoaded", function () {
   if (excluirBtn && tbody) {
     tbody.addEventListener("click", function (event) {
       const target = event.target;
+      console.log('Banana1 ', target.tagName)
       if (target.tagName === "TD") {
+        console.log('Banana')
         const row = target.closest("tr");
         const rows = tbody.querySelectorAll("tr");
         rows.forEach((row) => row.classList.remove("selected"));
@@ -402,10 +405,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const selectedRow = tbody.querySelector("tr.selected");
       if (selectedRow) {
         if (confirm("Tem certeza de que deseja excluir este produto?")) {
-          const productName = selectedRow.querySelector("td:nth-child(1)").textContent; // Supondo que a primeira coluna seja o nome do produto
+          const productId = selectedRow.querySelector("td:nth-child(4)").textContent; // Supondo que a primeira coluna seja o nome do produto
 
           try {
-            const response = await fetch(`https://api.seuservidor.com/products/${productName}`, { // Ajuste a URL conforme necessário
+            const response = await fetch(`http://127.0.0.1:8000/products/delete/?id=${productId}`, { // Ajuste a URL conforme necessário
               method: 'DELETE'
             });
 
@@ -444,7 +447,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   const filtroSelect = document.getElementById("filtro");
-  const tabelaBody = document.querySelector("#productTable tbody");
+  const tabelaBody = document.querySelector(".tabela-produto tbody");
 
   // Função para ordenar as linhas da tabela com base no nome do produto
   function ordenarPorNome() {
@@ -469,8 +472,8 @@ document.addEventListener("DOMContentLoaded", function () {
   
 });
 
-/*document.addEventListener("DOMContentLoaded", function () {
-  const tabelaBody = document.querySelector("#productTable tbody");
+document.addEventListener("DOMContentLoaded", function () {
+  const tabelaBody = document.getElementById("tabela-servico").querySelector("tbody");
   const editarBtn = document.querySelector(".editarBtnP");
   const confirmarBtn = document.querySelector(".confirmarBtnP");
   let editing = false; // Flag para indicar se a edição está habilitada
@@ -537,10 +540,10 @@ document.addEventListener("DOMContentLoaded", function () {
           }
       }
   });
-});*/
+});
 
 document.addEventListener("DOMContentLoaded", function () {
-  const tabelaBody = document.querySelector("#productTable tbody");
+  const tabelaBody = document.querySelector(".tabela-produto tbody");
   const editarBtn = document.querySelector(".editarBtnP");
   const confirmarBtn = document.querySelector(".confirmarBtnP");
   let editing = false; // Flag para indicar se a edição está habilitada
@@ -580,12 +583,15 @@ document.addEventListener("DOMContentLoaded", function () {
           const updatedProduct = {
               name: cells[0].textContent,
               description: cells[1].textContent,
-              price: cells[2].textContent,
-              image: cells[3].textContent
+              value: parseFloat(cells[2].textContent),
+              id: cells[3].textContent
+              // image: cells[3].textContent,
           };
 
+          console.log('updatedProduct ', updatedProduct)
+
           try {
-              const response = await fetch(`https://api.seuservidor.com/products/${updatedProduct.name}`, { // Ajuste a URL conforme necessário
+              const response = await fetch('http://127.0.0.1:8000/products/update/', { // Ajuste a URL conforme necessário
                   method: 'PUT',
                   headers: {
                       'Content-Type': 'application/json'
@@ -608,8 +614,8 @@ document.addEventListener("DOMContentLoaded", function () {
                   const result = await response.json();
                   showNotification(result.message, 'error');
               }
-          } catch (error) {
-              showNotification('Erro ao editar produto', 'error');
+          } catch (error) {              
+            showNotification('Erro ao editar produto', 'error');
           }
       }
   });
@@ -665,7 +671,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const tbody = document.querySelector("#membrosTable tbody");
+  const tbody = document.querySelector(".tabela tbody");
 
   // Recuperar membros do localStorage
   const members = JSON.parse(localStorage.getItem('members')) || [];
@@ -685,20 +691,23 @@ document.addEventListener("DOMContentLoaded", function () {
 */
 
 document.addEventListener("DOMContentLoaded", async function () {
-  const productTable = document.getElementById('productTable').querySelector('tbody');
+  const productTable = document.getElementById('tabela-servico').querySelector('tbody');
+  productTable.innerHTML = '';
 
   try {
-    const response = await fetch('https://api.seuservidor.com/products'); 
-    const products = await response.json();
+    const response = await fetch('http://127.0.0.1:8000/services/all/'); 
+    const services = await response.json();
+
+    console.log('services ', services)
 
     // Adicionar cada produto à tabela
-    products.forEach(product => {
+    services.forEach(product => {
       const newRow = document.createElement('tr');
       newRow.innerHTML = `
-        <td>${product.name}</td>
+        <td>${product.title}</td>
         <td>${product.description}</td>
-        <td>${product.price}</td>
-        <td><img src="https://api.seuservidor.com/images/${product.image}" alt="${product.name}" style="width:50px;height:50px;"></td>
+        <td>${product.value}</td>
+        <td>${product.id}</td>
       `;
       productTable.appendChild(newRow);
     });
@@ -707,27 +716,60 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 });
 
+
 document.addEventListener("DOMContentLoaded", async function () {
-  const tbody = document.querySelector("#membrosTable tbody");
+  const productTable = document.querySelector('.tabela-produto').querySelector('tbody');
+  productTable.innerHTML = '';
 
   try {
-    const response = await fetch('https://api.seuservidor.com/members');
+    const response = await fetch('http://127.0.0.1:8000/products/all/'); 
+    const products = await response.json();
+
+    console.log('products ', products)
+
+    // Adicionar cada produto à tabela
+    products.forEach(product => {
+      const newRow = document.createElement('tr');
+      newRow.innerHTML = `
+        <td>${product.title}</td>
+        <td>${product.description}</td>
+        <td>${product.value}</td>
+        <td>${product.id}</td>
+      `;
+      // <td><img src="https://api.seuservidor.com/images/${product.image}" alt="${product.name}" style="width:50px;height:50px;"></td>
+      productTable.appendChild(newRow);
+    });
+  } catch (error) {
+    console.error('Erro ao carregar produtos:', error);
+  }
+});
+
+document.addEventListener("DOMContentLoaded", async function () {
+  const tbody = document.querySelector(".tabela tbody");
+  tbody.innerHTML = '';
+  
+  try {
+    const response = await fetch('http://127.0.0.1:8000/users/all/');
     const members = await response.json();
+
+    console.log("membros", members.name);
 
     // Adicionar cada membro à tabela
     members.forEach(member => {
       const newRow = document.createElement('tr');
       newRow.innerHTML = `
         <td>${member.name}</td>
-        <td>${member.login}</td>
+        <td>${member.email}</td>
         <td>${member.password}</td>
-        <td>${member.role}</td>
+        <td>${member.role_id}</td>
+        <td>${member.id}</td>
       `;
       tbody.appendChild(newRow);
     });
   } catch (error) {
     console.error('Erro ao carregar membros:', error);
   }
+
 });
 
 
@@ -736,3 +778,214 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
 
+// Deletar services
+document.addEventListener("DOMContentLoaded", function () {
+  const tbody = document.getElementById("tabela-servico tbody");
+  const excluirBtn = document.querySelector(".excluirBtnP");
+  const deleteNotification = document.getElementById('deleteNotification');
+  const cancelNotification = document.getElementById('cancelNotification');
+
+  if (excluirBtn && tbody) {
+    tbody.addEventListener("click", function (event) {
+      const target = event.target;
+      if (target.tagName === "TD") {
+        const row = target.closest("tr");
+        const rows = tbody.querySelectorAll("tr");
+        rows.forEach((row) => row.classList.remove("selected"));
+        row.classList.add("selected");
+      }
+    });
+
+    excluirBtn.addEventListener("click", async function () {
+      const selectedRow = tbody.querySelector("tr.selected");
+      if (selectedRow) {
+        if (confirm("Tem certeza de que deseja excluir este serviço?")) {
+          const serviceId = selectedRow.querySelector("td:nth-child(4)").textContent;
+
+          try {
+            const response = await fetch(`http://127.0.0.1:8000/services/delete/?id=${serviceId}`, {
+              method: 'DELETE'
+            });
+
+            if (response.ok) {
+              selectedRow.remove();
+              showNotification('Serviço excluído com sucesso!', 'success', deleteNotification);
+            } else {
+              const result = await response.json();
+              showNotification(result.message, 'error', deleteNotification);
+            }
+          } catch (error) {
+            showNotification('Erro ao excluir serviço', 'error', deleteNotification);
+          }
+        } else {
+          showNotification('Ação de exclusão cancelada!', 'error', cancelNotification);
+        }
+      } else {
+        alert("Por favor, selecione um serviço para excluir.");
+      }
+    });
+  } else {
+    console.error("Elemento não encontrado.");
+  }
+
+  function showNotification(message, type, notificationElement) {
+    notificationElement.textContent = message;
+    notificationElement.className = 'notification ' + type + ' show';
+
+    setTimeout(() => {
+      notificationElement.className = 'notification';
+    }, 5000);
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const tbody = document.getElementById("tabela-servico").querySelector("tbody");
+  const excluirBtn = document.getElementById("excluirBtnS");
+  const deleteNotification = document.getElementById('deleteNotification');
+  const cancelNotification = document.getElementById('cancelNotification');
+
+  console.log('Banana service', excluirBtn, tbody)
+
+  if (excluirBtn && tbody) {
+    tbody.addEventListener("click", function (event) {
+      const target = event.target;
+      if (target.tagName === "TD") {
+        const row = target.closest("tr");
+        const rows = tbody.querySelectorAll("tr");
+        rows.forEach((row) => row.classList.remove("selected"));
+        row.classList.add("selected");
+      }
+    });
+
+    excluirBtn.addEventListener("click", async function () {
+      console.log('Banana service1')
+      const selectedRow = tbody.querySelector("tr.selected");
+      if (selectedRow) {
+        if (confirm("Tem certeza de que deseja excluir este serviço?")) {
+          const serviceId = selectedRow.querySelector("td:nth-child(4)").textContent; // Supondo que a primeira coluna seja o nome do serviço
+          console.log('serviceId ', serviceId)
+
+          try {
+            const response = await fetch(`http://127.0.0.1:8000/services/delete/?id=${serviceId}`, { // Ajuste a URL conforme necessário
+              method: 'DELETE'
+            });
+
+            if (response.ok) {
+              selectedRow.remove();
+              showNotification('Serviço excluído com sucesso!', 'success', deleteNotification);
+            } else {
+              const result = await response.json();
+              showNotification(result.message, 'error', deleteNotification);
+            }
+          } catch (error) {
+            showNotification('Erro ao excluir serviço', 'error', deleteNotification);
+          }
+        } else {
+          showNotification('Ação de exclusão cancelada!', 'error', cancelNotification);
+        }
+      } else {
+        alert("Por favor, selecione um serviço para excluir.");
+      }
+    });
+  } else {
+    console.error("Elemento não encontrado.");
+  }
+
+  function showNotification(message, type, notificationElement) {
+    notificationElement.textContent = message;
+    notificationElement.className = 'notification ' + type + ' show';
+
+    setTimeout(() => {
+      notificationElement.className = 'notification';
+    }, 5000);
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const tabelaBody = document.getElementById("tabela-servico").querySelector("tbody");
+  const editarBtn = document.getElementById("editarBtnS");
+  const confirmarBtn = document.getElementById("confirmarBtnS");
+  const notification = document.getElementById('notification');
+  let editing = false;
+
+  editarBtn.addEventListener("click", function () {
+    const selectedRow = document.querySelector("tr.selected");
+
+    if (selectedRow) {
+      if (!editing) {
+        const cells = selectedRow.querySelectorAll("td");
+        cells.forEach(function (cell) {
+          cell.contentEditable = true;
+          cell.style.border = "1px solid #000";
+        });
+
+        editing = true;
+        confirmarBtn.style.display = "inline-block";
+        editarBtn.style.display = "none";
+      }
+    } else {
+      alert("Por favor, selecione um serviço para editar.");
+    }
+  });
+
+  confirmarBtn.addEventListener("click", async function () {
+    const selectedRow = document.querySelector("tr.selected");
+
+    if (selectedRow) {
+      const cells = selectedRow.querySelectorAll("td");
+      const updatedService = {
+        title: cells[0].textContent,
+        description: cells[1].textContent,
+        value: parseFloat(cells[2].textContent),
+        id: cells[3].textContent
+      };
+
+      try {
+        const response = await fetch('http://127.0.0.1:8000/services/update/', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatedService)
+        });
+
+        if (response.ok) {
+          cells.forEach(function (cell) {
+            cell.contentEditable = false;
+            cell.style.border = "none";
+          });
+
+          editing = false;
+          confirmarBtn.style.display = "none";
+          editarBtn.style.display = "inline-block";
+          showNotification('Serviço atualizado com sucesso!', 'success');
+        } else {
+          const result = await response.json();
+          showNotification(result.message, 'error');
+        }
+      } catch (error) {
+        showNotification('Erro ao atualizar serviço', 'error');
+      }
+    }
+  });
+
+  tabelaBody.addEventListener("click", function (event) {
+    const targetRow = event.target.closest("tr");
+
+    if (targetRow) {
+      tabelaBody.querySelectorAll("tr").forEach(row => row.classList.remove("selected"));
+      targetRow.classList.add("selected");
+    }
+  });
+
+  function showNotification(message, type) {
+    notification.textContent = message;
+    notification.className = 'notification ' + type + ' show';
+
+    setTimeout(() => {
+      notification.className = 'notification';
+    }, 5000);
+  }
+});

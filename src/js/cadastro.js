@@ -130,10 +130,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const role = document.getElementById('role').value;
 
     if (name && login && password && role) {
-      const data = { name, login, password, role };
+      const data = {"name": name,
+                    "email": login,
+                    "password": password,
+                    "role_id": role,
+                    // "photo": "string",
+                    // "description": "string" 
+        };
+
 
       try {
-        const response = await fetch('https://api.seuservidor.com/register', { 
+        const response = await fetch('http://127.0.0.1:8000/users/', { 
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

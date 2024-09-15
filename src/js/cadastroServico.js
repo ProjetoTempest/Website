@@ -9,19 +9,50 @@ document.addEventListener("DOMContentLoaded", function () {
       const name = document.getElementById('nameservice').value;
       const description = document.getElementById('description').value;
       const price = document.getElementById('price').value;
-      const imageFile = document.getElementById('image').files[0];
+      const imageFile = document.getElementById('image').files;
+      
+      const formData = new FormData();
+      const imageFilesArray = Array.from(imageFile);
+
+      imageFilesArray.forEach((file) => {
+          formData.append('images', file);
+      });
+
+      const responseImg = await fetch('http://127.0.0.1:8000/images/upload-images', {
+          method: 'POST',
+          headers: {
+              'Accept': 'application/json',
+          },
+          body: formData
+      });
+
+      const dataImg = await responseImg.json();
+      const imgsUrl = [];
+
+      dataImg.images.forEach((img) => {
+          imgsUrl.push(img.url);
+      });
 
       if (name && description && price && imageFile) {
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('description', description);
-        formData.append('price', price);
-        formData.append('image', imageFile);
+        // formData.append('name', name);
+        // formData.append('description', description);
+        // formData.append('price', price);
+        // formData.append('image', imageFile);
+
+        const createService = {
+          'title': name,
+          'description': description,
+          'value': parseFloat(price),
+          'images': imgsUrl,
+          }
 
         try {
-          const response = await fetch('https://api.seuservidor.com/products', {
+          const response = await fetch('http://127.0.0.1:8000/services/', {
             method: 'POST',
-            body: formData
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(createService)
           });
 
           const result = await response.json();
