@@ -45,7 +45,7 @@ class ProductUpdate(CustomBaseModel):
             values.get('value'),
             values.get('images')
         )
-        super().assert_float_value(values.get('value'), non_update=False)
+        # super().assert_float_value(field=values.get('value'), non_update=False)
 
         return values
         

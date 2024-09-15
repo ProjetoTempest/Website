@@ -90,6 +90,10 @@ class ServiceCases:
     def delete(self, service_id: str) -> dict[str, str]:
         try:
             service_db = self._service_model_id(service_id)
+
+            if service_db.images:
+                for image in service_db.images:
+                    self.db_session.delete(image)
             
             self.db_session.delete(service_db)
             self.db_session.commit()

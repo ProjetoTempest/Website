@@ -1,9 +1,13 @@
 from fastapi import HTTPException
-from app.schemas.user import UserRequest, UserUpdate, UserResponse
+from app.schemas.user import UserRequest, UserUpdate, UserResponse, UserResponseLogin
 from app.services.ids import id_generate
 from sqlalchemy.orm import Session
 
 from app.db.models import User as UserModel
+from app.db.models import Role as RoleModel
+from app.schemas.login import Request
+from app.services.tokens import generate_token, encode_token
+from app.schemas.token import TokenData
 
 class UserCases:
     def __init__(self, db_session: Session) -> None:
@@ -109,3 +113,14 @@ class UserCases:
 
     def _map_models_to_responses(self, users: list[UserModel]) -> list[UserResponse]:
         return [UserResponse(**user.dict()) for user in users]
+    
+    def login(self, dados: Request) -> tuple:
+        user = self.db_session.query(UserModel).filter(UserModel.email == dados.email, UserModel.password == dados.password).first()
+
+        if not user:
+            raise HTTPException(status_code=404, detail="Usuário não encontrado")
+        
+        # user_token = TokenData(id=user.id, name=user.name, email=user.email, role_name=user.role.name)
+        user_token = TokenData(role_name=user.role.name)
+
+        return encode_token(generate_token(user_token))

@@ -25,7 +25,7 @@ class CustomBaseModel(BaseModel):
             raise HTTPException(400, "Informe ao menos um campo para atualizar")
         
     @staticmethod
-    def assert_float_value(field: float | None, update: bool = True):
+    def assert_float_value(field: float | None, update: bool = True | False):
         if field is None and not update:
             raise HTTPException(400, "Informe um valor para o campo")
         if not isinstance(field, float) and not update:

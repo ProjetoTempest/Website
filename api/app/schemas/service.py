@@ -18,8 +18,9 @@ class ServiceRequest(CustomBaseModel):
     @model_validator(mode='before')
     def check_fields(cls, values):
         super().validate_required_string_field(values.get('title'), 'title')
+        
         print("Aquil")
-        super().assert_float_value(values.get('value'), update=False)
+        # super().assert_float_value(values.get('value'), update=False)
 
         return values
     
