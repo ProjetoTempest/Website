@@ -123,8 +123,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   registerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const name = document.getElementById('name').value;
+
     const login = document.getElementById('login').value;
     const password = document.getElementById('password').value;
     const role = document.getElementById('role').value;
